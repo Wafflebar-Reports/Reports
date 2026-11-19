@@ -43,7 +43,7 @@ td.d{font-weight:700}tr.rs td.d{color:var(--red)}tr.re td.d{color:#b3750a}
  tr.g td,.pill{-webkit-print-color-adjust:exact;print-color-adjust:exact}tr.g td{background:#e9eff7!important;color:#12355b!important}tr{page-break-inside:avoid}}
 th+th,td+td{border-left:1px solid var(--line)}th+th{border-left:1px solid rgba(255,255,255,.28)}th.sl{text-align:left;min-width:84px;max-width:120px;white-space:normal;word-break:normal;overflow-wrap:anywhere}@media print{th+th,td+td{border-left:1px solid #bbb}th+th{border-left:1px solid rgba(255,255,255,.4)}th.sl{max-width:90px}}th.sl{background:#0e7c86!important}td.sc{background:rgba(14,124,134,.09)}@media print{th.sl,td.sc{-webkit-print-color-adjust:exact;print-color-adjust:exact}th.sl{background:#0e7c86!important}}</style></head><body><div class="wrap">
 <div class="hdr"><div class="logo">W</div><div><h1>The Waffle Bar &middot; Tray Closing Report</h1><div class="sub" id="sub"></div></div><div class="sp"></div>
-<div class="acts"><button class="btn pri" id="pdf">&#8681; Save PDF</button><button class="btn" id="prn">&#128424; Print</button><button class="btn" id="conn">&#128279; Connect Excel</button><button class="btn hide" id="refr">&#8635; Refresh</button><button class="btn" id="bake" title="Download a new copy of this report with all current data saved inside it">&#128190; Save updated report</button></div></div>
+<div class="acts"><button class="btn pri" id="pdf">&#8681; Save PDF</button><button class="btn" id="prn">&#128424; Print</button><button class="btn" id="conn">&#128279; Connect Excel</button><button class="btn hide" id="refr">&#8635; Refresh</button><button class="btn" id="bake" title="Download a new copy of this report with all current data saved inside it">&#128190; Save updated report</button><button class="btn pri" id="pub" title="Save this data into the live GitHub link">&#9729; Publish to GitHub</button></div></div>
 <div class="ctl">
  <span class="seg"><button class="tab on" id="m1">Combined</button><button class="tab" id="m2">Day-wise</button></span>
  <span class="chips" id="chips"></span>
@@ -59,7 +59,7 @@ th+th,td+td{border-left:1px solid var(--line)}th+th{border-left:1px solid rgba(2
 </div>
 <script>
 const __SRC=document.documentElement.outerHTML;
-let rows=[["2026-11-03", "Sindhi Muslim Branch (Walk-In)", "Brownie Tray 1 Pcs", 35, 0, 0, 2, 0, 0, 80], ["2026-11-03", "Sindhi Muslim Branch (Walk-In)", "Waffle Tray 1 Pcs", 320, 0, 0, 83, 0, 0, 330], ["2026-11-03", "The Waffle Bar Bahadurabad (Walk-In)", "Brownie Tray 1 Pcs", 0, 0, 0, 2, 0, 0, 0], ["2026-11-03", "The Waffle Bar Bahadurabad (Walk-In)", "Waffle Tray 1 Pcs", 302, 0, 0, 110, 3, 0, 180], ["2026-11-03", "The Waffle bar - Online", "Waffle Tray 1 Pcs", 72, 200, 0, 72, 0, 0, 110], ["2026-11-03", "The Waffle Bar Bahadurabad", "Waffle Tray 1 Pcs", 0, 0, 0, 84, 0, 0, 0], ["2026-11-03", "Dairy Feast", "Brownie Tray 1 Pcs", 54, 30, 0, 14, 0, 0, 57], ["2026-11-03", "Dairy Feast", "Waffle Tray 1 Pcs", 211, 200, 0, 141, 0, 0, 260], ["2026-11-03", "Creek Walk", "Waffle Tray 1 Pcs", 156, 0, 0, 36, 0, 0, 109]];let sel=new Set(),mode='c';
+const TVER=0;let rows=[["2026-11-03", "Sindhi Muslim Branch (Walk-In)", "Brownie Tray 1 Pcs", 35, 0, 0, 2, 0, 0, 80], ["2026-11-03", "Sindhi Muslim Branch (Walk-In)", "Waffle Tray 1 Pcs", 320, 0, 0, 83, 0, 0, 330], ["2026-11-03", "The Waffle Bar Bahadurabad (Walk-In)", "Brownie Tray 1 Pcs", 0, 0, 0, 2, 0, 0, 0], ["2026-11-03", "The Waffle Bar Bahadurabad (Walk-In)", "Waffle Tray 1 Pcs", 302, 0, 0, 110, 3, 0, 180], ["2026-11-03", "The Waffle bar - Online", "Waffle Tray 1 Pcs", 72, 200, 0, 72, 0, 0, 110], ["2026-11-03", "The Waffle Bar Bahadurabad", "Waffle Tray 1 Pcs", 0, 0, 0, 84, 0, 0, 0], ["2026-11-03", "Dairy Feast", "Brownie Tray 1 Pcs", 54, 30, 0, 14, 0, 0, 57], ["2026-11-03", "Dairy Feast", "Waffle Tray 1 Pcs", 211, 200, 0, 141, 0, 0, 260], ["2026-11-03", "Creek Walk", "Waffle Tray 1 Pcs", 156, 0, 0, 36, 0, 0, 109]];let sel=new Set(),mode='c';try{const sv=JSON.parse(localStorage.getItem('tray_report_v1')||'null');if(sv&&sv.v===TVER&&sv.rows)rows=sv.rows;}catch(e){}
 const $=s=>document.querySelector(s);
 const NK=s=>String(s==null?'':s).toLowerCase().replace(/[^a-z]/g,'');
 const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
@@ -197,7 +197,7 @@ async function loadFromBuffer(buf,label){
  const names=Object.keys(sh).sort((a,b)=>(a==='Report Data'?-1:0)-(b==='Report Data'?-1:0));
  for(const n of names){const r=parseRows(sh[n]);if(r.length>nw.length){nw=r;used=n;}if(n==='Report Data'&&r.length)break;}
  if(!nw.length)throw new Error('No Brownie/Waffle Tray data found in this file (Report Data sheet required)');
- const old=dates();{const nd0=new Set(nw.map(r=>r[0]));nw=rows.filter(r=>!nd0.has(r[0])).concat(nw);}rows=nw;const nd=dates();
+ const old=dates();{const nd0=new Set(nw.map(r=>r[0]));nw=rows.filter(r=>!nd0.has(r[0])).concat(nw);}rows=nw;try{localStorage.setItem('tray_report_v1',JSON.stringify({rows,v:TVER}));}catch(e){}const nd=dates();
  if(!sel.size||![...sel].some(d=>nd.includes(d)))sel=new Set(nd.slice(0,1));else sel=new Set([...sel].filter(d=>nd.includes(d)));
  render();
  $('#link').textContent='Excel connected: '+label+' (sheet: '+used+') · '+rows.length+' rows, '+nd.length+' dates · last read at '+new Date().toLocaleTimeString()+'. After saving the Excel file, click "Refresh" (it also checks automatically every 20 seconds).';}
@@ -205,8 +205,42 @@ async function loadFromBuffer(buf,label){
 function bakeHTML(){let s='<!doctype html>'+__SRC;
  const i=s.indexOf('let rows=[['),e=s.indexOf(';let sel=new Set()',i);
  if(i<0||e<0)throw new Error('bake marker missing');
- return s.slice(0,i)+'let rows='+JSON.stringify(rows).replace(/<\//g,'<\\/')+s.slice(e);}
+ return (s.slice(0,i)+'let rows='+JSON.stringify(rows).replace(/<\//g,'<\\/')+s.slice(e)).replace(/const TVER=\d+;/,()=>'const TVER='+Date.now()+';');}
 $('#bake').onclick=()=>{try{const b=new Blob([bakeHTML()],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='Tray_Closing_Report.html';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},800);}catch(e){alert('Could not save: '+e.message);}};
+
+const GHK='gh_pub_v1';
+const ghCfg=()=>{try{return JSON.parse(localStorage.getItem(GHK)||'null');}catch(e){return null;}};
+function ghDefaults(){let o='Wafflebar-Reports',r='Reports',p='Tray_Closing_Report (5).html';try{if(/\.github\.io$/.test(location.hostname)){o=location.hostname.split('.')[0];r=location.pathname.split('/')[1]||r;p=decodeURIComponent(location.pathname.split('/').pop())||p;}}catch(e){}return {owner:o,repo:r,path:p,token:''};}
+async function ghPublish(c,say){
+ const api='https://api.github.com/repos/'+encodeURIComponent(c.owner)+'/'+encodeURIComponent(c.repo)+'/contents/'+c.path.split('/').map(encodeURIComponent).join('/');
+ const H={Authorization:'Bearer '+c.token,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+ say('Checking file on GitHub...');
+ let sha;const g=await fetch(api+'?ref=main',{headers:H});
+ if(g.ok)sha=(await g.json()).sha;else if(g.status===401||g.status===403)throw new Error('Token not accepted (code '+g.status+'). Check the token and that it has Contents: Read and write on this repository.');else if(g.status!==404)throw new Error('GitHub error '+g.status);
+ say('Uploading...');
+ const u8=new TextEncoder().encode(bakeHTML());let bin='';for(let i=0;i<u8.length;i+=0x8000)bin+=String.fromCharCode.apply(null,u8.subarray(i,i+0x8000));
+ const body={message:'Update report data '+new Date().toISOString().slice(0,16).replace('T',' '),content:btoa(bin),branch:'main'};if(sha)body.sha=sha;
+ const p=await fetch(api,{method:'PUT',headers:Object.assign({'Content-Type':'application/json'},H),body:JSON.stringify(body)});
+ if(!p.ok){let t='';try{t=(await p.json()).message||'';}catch(e){}throw new Error('Upload failed ('+p.status+') '+t);}
+}
+function ghDialog(){
+ const d=Object.assign(ghDefaults(),ghCfg()||{});
+ const w=document.createElement('div');w.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99;display:grid;place-items:center;padding:14px';
+ w.innerHTML='<div style="background:#fff;color:#16202b;border-radius:12px;max-width:520px;width:100%;padding:18px;font:14px Arial,sans-serif;max-height:94vh;overflow:auto"><h3 style="margin:0 0 6px">Publish to GitHub</h3><div style="color:#64748b;font-size:12px;margin-bottom:10px">One-time setup on this computer. The token is kept only in this browser and is never put inside the report file.</div>'
+ +'<label style="font-size:12px;font-weight:700">Access token</label><input id="g_t" type="password" style="width:100%;padding:8px;margin:3px 0 8px;border:1px solid #ccd;border-radius:6px" placeholder="github_pat_...">'
+ +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div><label style="font-size:12px;font-weight:700">Owner</label><input id="g_o" style="width:100%;padding:8px;border:1px solid #ccd;border-radius:6px"></div><div><label style="font-size:12px;font-weight:700">Repository</label><input id="g_r" style="width:100%;padding:8px;border:1px solid #ccd;border-radius:6px"></div></div>'
+ +'<label style="font-size:12px;font-weight:700;display:block;margin-top:8px">File name in repository (the report to replace)</label><input id="g_p" style="width:100%;padding:8px;margin-top:3px;border:1px solid #ccd;border-radius:6px">'
+ +'<details style="margin:10px 0;font-size:12px;color:#334"><summary style="cursor:pointer;font-weight:700">How to get the token (once)</summary><ol style="margin:6px 0 0 16px;padding:0;line-height:1.5"><li>GitHub &rarr; your profile picture &rarr; Settings &rarr; Developer settings &rarr; Personal access tokens &rarr; <b>Fine-grained tokens</b> &rarr; Generate new token.</li><li>Expiration: pick the longest.</li><li>Repository access: <b>Only select repositories</b> &rarr; Reports.</li><li>Permissions &rarr; Repository permissions &rarr; <b>Contents: Read and write</b>.</li><li>Generate token, copy it and paste above.</li></ol></details>'
+ +'<div id="g_s" style="min-height:18px;font-weight:700;margin:6px 0"></div><div style="display:flex;gap:8px;justify-content:flex-end"><button id="g_x" style="padding:8px 14px;border-radius:8px;border:1px solid #ccd;background:#fff;cursor:pointer;font-weight:700">Close</button><button id="g_go" style="padding:8px 14px;border-radius:8px;border:0;background:#12355b;color:#fff;cursor:pointer;font-weight:700">Save &amp; Publish</button></div></div>';
+ document.body.appendChild(w);const q=s=>w.querySelector(s);q('#g_t').value=d.token||'';q('#g_o').value=d.owner;q('#g_r').value=d.repo;q('#g_p').value=d.path;
+ const say=(t,bad)=>{const s=q('#g_s');s.textContent=t;s.style.color=bad?'#b3261e':'#1f9d63';};
+ q('#g_x').onclick=()=>w.remove();
+ q('#g_go').onclick=async()=>{const c={token:q('#g_t').value.trim(),owner:q('#g_o').value.trim(),repo:q('#g_r').value.trim(),path:q('#g_p').value.trim()};
+  if(!c.token||!c.owner||!c.repo||!c.path){say('Fill all fields.',1);return;}
+  try{localStorage.setItem(GHK,JSON.stringify(c));}catch(e){}
+  q('#g_go').disabled=true;try{await ghPublish(c,t=>say(t));say('Published. The live link will show the new data in 1-2 minutes.');}catch(e){say(e.message,1);}q('#g_go').disabled=false;};
+}
+$('#pub').onclick=ghDialog;
 
 let fh=null,lastMod=0;
 const idb=()=>new Promise((res,rej)=>{const r=indexedDB.open('tray_conn',1);r.onupgradeneeded=()=>r.result.createObjectStore('h');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);});
