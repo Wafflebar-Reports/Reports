@@ -208,19 +208,21 @@ function bakeHTML(){let s='<!doctype html>'+__SRC;
  return (s.slice(0,i)+'let rows='+JSON.stringify(rows).replace(/<\//g,'<\\/')+s.slice(e)).replace(/const TVER=\d+;/,()=>'const TVER='+Date.now()+';');}
 $('#bake').onclick=()=>{try{const b=new Blob([bakeHTML()],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='Tray_Closing_Report.html';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},800);}catch(e){alert('Could not save: '+e.message);}};
 
-const GHK='gh_pub_v1';
+const GHK='gh_pub_v2:'+'Tray_Closing_Report (5).html';const GHREPORT=('Tray_Closing_Report (5).html'.split('_')[0]||'').toLowerCase();
 const ghCfg=()=>{try{return JSON.parse(localStorage.getItem(GHK)||'null');}catch(e){return null;}};
 function ghDefaults(){let o='Wafflebar-Reports',r='Reports',p='Tray_Closing_Report (5).html';try{if(/\.github\.io$/.test(location.hostname)){o=location.hostname.split('.')[0];r=location.pathname.split('/')[1]||r;p=decodeURIComponent(location.pathname.split('/').pop())||p;}}catch(e){}return {owner:o,repo:r,path:p,token:''};}
 async function ghPublish(c,say){
  const api='https://api.github.com/repos/'+encodeURIComponent(c.owner)+'/'+encodeURIComponent(c.repo)+'/contents/'+c.path.split('/').map(encodeURIComponent).join('/');
  const H={Authorization:'Bearer '+c.token,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
  say('Checking file on GitHub...');
- let sha;const g=await fetch(api+'?ref=main',{headers:H});
+ if(GHREPORT&&c.path.toLowerCase().indexOf(GHREPORT)<0)throw new Error('This is the '+GHREPORT+' report, but the file name above does not contain "'+GHREPORT+'". Publishing was stopped so the wrong report is not replaced.');
+ let sha;const g=await fetch(api+'?ref=main&_='+Date.now(),{headers:H,cache:'no-store'});
  if(g.ok)sha=(await g.json()).sha;else if(g.status===401||g.status===403)throw new Error('Token not accepted (code '+g.status+'). Check the token and that it has Contents: Read and write on this repository.');else if(g.status!==404)throw new Error('GitHub error '+g.status);
  say('Uploading...');
  const u8=new TextEncoder().encode(bakeHTML());let bin='';for(let i=0;i<u8.length;i+=0x8000)bin+=String.fromCharCode.apply(null,u8.subarray(i,i+0x8000));
  const body={message:'Update report data '+new Date().toISOString().slice(0,16).replace('T',' '),content:btoa(bin),branch:'main'};if(sha)body.sha=sha;
- const p=await fetch(api,{method:'PUT',headers:Object.assign({'Content-Type':'application/json'},H),body:JSON.stringify(body)});
+ let p=await fetch(api,{method:'PUT',headers:Object.assign({'Content-Type':'application/json'},H),body:JSON.stringify(body)});
+ if(p.status===409){const g2=await fetch(api+'?ref=main&_='+Date.now(),{headers:H,cache:'no-store'});if(g2.ok){body.sha=(await g2.json()).sha;p=await fetch(api,{method:'PUT',headers:Object.assign({'Content-Type':'application/json'},H),body:JSON.stringify(body)});}}
  if(!p.ok){let t='';try{t=(await p.json()).message||'';}catch(e){}throw new Error('Upload failed ('+p.status+') '+t);}
 }
 function ghDialog(){
@@ -237,6 +239,7 @@ function ghDialog(){
  q('#g_x').onclick=()=>w.remove();
  q('#g_go').onclick=async()=>{const c={token:q('#g_t').value.trim(),owner:q('#g_o').value.trim(),repo:q('#g_r').value.trim(),path:q('#g_p').value.trim()};
   if(!c.token||!c.owner||!c.repo||!c.path){say('Fill all fields.',1);return;}
+  if(!confirm('This will replace the file "'+c.path+'" in '+c.owner+'/'+c.repo+' with this report. Continue?'))return;
   try{localStorage.setItem(GHK,JSON.stringify(c));}catch(e){}
   q('#g_go').disabled=true;try{await ghPublish(c,t=>say(t));say('Published. The live link will show the new data in 1-2 minutes.');}catch(e){say(e.message,1);}q('#g_go').disabled=false;};
 }
