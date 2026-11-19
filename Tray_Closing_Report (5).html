@@ -1,0 +1,225 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Waffle Bar Tray Closing Report</title>
+<style>
+:root{--ink:#16202b;--mut:#64748b;--bg:#eef1f5;--pan:#fff;--line:#e5e9ef;--navy:#12355b;--navy2:#1d4d80;--red:#d64545;--amb:#e09a1a;--grn:#1f9d63;--redbg:#fdecec;--ambbg:#fff4de;--grnbg:#e5f6ee;--shadow:0 1px 2px rgba(16,32,48,.06),0 4px 14px rgba(16,32,48,.06)}
+@media(prefers-color-scheme:dark){:root{--ink:#e8edf3;--mut:#93a1b3;--bg:#12171d;--pan:#1b222b;--line:#2b3541;--navy:#2c5d93;--navy2:#3b73b0;--redbg:#3a2224;--ambbg:#3a3020;--grnbg:#1c3429;--shadow:none}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:14px}
+.wrap{max-width:1500px;margin:0 auto;padding:16px 18px 28px}
+.hdr{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:linear-gradient(120deg,var(--navy),var(--navy2));color:#fff;border-radius:14px 14px 0 0;padding:9px 16px;box-shadow:var(--shadow)}
+.logo{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.16);display:grid;place-items:center;font-family:Georgia,serif;font-size:19px}
+.hdr h1{margin:0;font-family:Georgia,serif;font-weight:400;font-size:20px}.hdr .sub{opacity:.85;font-size:12px;margin-top:1px}.sp{flex:1}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font:inherit;font-weight:600;font-size:13px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;border-radius:9px;padding:7px 12px;cursor:pointer}
+.btn:hover{background:rgba(255,255,255,.22)}.btn.pri{background:#fff;color:var(--navy);border-color:#fff}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--pan);border:1px solid var(--line);border-radius:0 0 12px 12px;border-top:none;padding:10px 12px;box-shadow:var(--shadow)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.tab{font:inherit;font-weight:600;padding:7px 14px;border:none;background:transparent;color:var(--mut);cursor:pointer}.tab.on{background:var(--navy);color:#fff}
+.sb{font:inherit;font-weight:600;color:var(--ink);background:var(--pan);border:1px solid var(--line);border-radius:9px;padding:7px 11px;cursor:pointer}
+.chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chip{font:inherit;font-weight:700;font-size:13px;border:1px solid #ecd48a;background:#fff6dc;color:#16202b;border-radius:20px;padding:5px 12px;cursor:pointer;opacity:.55}
+.chip.on{opacity:1;background:var(--navy);color:#fff;border-color:var(--navy)}
+.link{color:var(--mut);font-size:12px;margin:8px 4px 0}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:14px 0}
+.tile{background:var(--pan);border:1px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:var(--shadow);border-left:5px solid var(--c,var(--navy2))}
+.tile .k{color:var(--mut);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}.tile .v{font-family:Georgia,serif;font-size:32px;color:var(--c,var(--ink))}
+.sec{margin:16px 0 4px;font-family:Georgia,serif;font-size:17px;color:var(--navy)}
+@media(prefers-color-scheme:dark){.sec{color:#cfe0f3}}
+.tw{background:var(--pan);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:auto;margin:6px 0 14px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:7px 7px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{background:var(--navy);color:#fff;font-size:12px;white-space:normal;vertical-align:bottom}
+th.l,td.l{text-align:left}
+tr.g td{background:#e9eff7;font-weight:700;color:var(--navy)}
+@media(prefers-color-scheme:dark){tr.g td{background:#232d39;color:#cfe0f3}}
+td.d{font-weight:700}tr.rs td.d{color:var(--red)}tr.re td.d{color:#b3750a}
+.pill{display:inline-block;min-width:54px;text-align:center;font-weight:700;font-size:11px;padding:2px 8px;border-radius:20px}
+.pill.Short{background:var(--redbg);color:var(--red)}.pill.Excess{background:var(--ambbg);color:#b3750a}.pill.Match{background:var(--grnbg);color:var(--grn)}
+.note{color:var(--mut);font-size:12px;margin:8px 4px}.hide{display:none!important}
+.phead,.psign{display:none}
+@page{size:A4 landscape;margin:8mm}
+@media print{body{background:#fff;color:#000;font-size:9px}.wrap{padding:0}.hdr,.ctl,.link,.tiles,.note{display:none!important}
+ .phead{display:flex!important;justify-content:space-between;border-bottom:2px solid #12355b;padding-bottom:5px;margin-bottom:6px}.phead h1{margin:0;font-family:Georgia,serif;font-weight:400;font-size:18px;color:#12355b}
+ .psign{display:flex!important;justify-content:space-between;margin-top:26px}.psign span{border-top:1px solid #000;min-width:200px;text-align:center;padding-top:3px}
+ .tw{border:none;box-shadow:none}table{font-size:8.5px}th,td{padding:2.5px 3px}th{background:#12355b!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ tr.g td,.pill{-webkit-print-color-adjust:exact;print-color-adjust:exact}tr.g td{background:#e9eff7!important;color:#12355b!important}tr{page-break-inside:avoid}}
+th+th,td+td{border-left:1px solid var(--line)}th+th{border-left:1px solid rgba(255,255,255,.28)}th.sl{text-align:left;min-width:84px;max-width:120px;white-space:normal;word-break:normal;overflow-wrap:anywhere}@media print{th+th,td+td{border-left:1px solid #bbb}th+th{border-left:1px solid rgba(255,255,255,.4)}th.sl{max-width:90px}}th.sl{background:#0e7c86!important}td.sc{background:rgba(14,124,134,.09)}@media print{th.sl,td.sc{-webkit-print-color-adjust:exact;print-color-adjust:exact}th.sl{background:#0e7c86!important}}</style></head><body><div class="wrap">
+<div class="hdr"><div class="logo">W</div><div><h1>The Waffle Bar &middot; Tray Closing Report</h1><div class="sub" id="sub"></div></div><div class="sp"></div>
+<div class="acts"><button class="btn pri" id="pdf">&#8681; Save PDF</button><button class="btn" id="prn">&#128424; Print</button><button class="btn" id="conn">&#128279; Connect Excel</button><button class="btn hide" id="refr">&#8635; Refresh</button><button class="btn" id="bake" title="Download a new copy of this report with all current data saved inside it">&#128190; Save updated report</button></div></div>
+<div class="ctl">
+ <span class="seg"><button class="tab on" id="m1">Combined</button><button class="tab" id="m2">Day-wise</button></span>
+ <span class="chips" id="chips"></span>
+ <button class="sb" id="aAll">All</button><button class="sb" id="aLast">Latest</button><button class="sb" id="aClr">Clear</button>
+</div>
+<div class="link" id="link">Excel is not connected: showing built-in data. Click "Connect Excel" and choose your tray workbook (Report Data sheet).</div>
+<input type="file" id="fi" accept=".xlsx,.xlsm" class="hide">
+<div class="tiles" id="tiles"></div>
+<div class="phead"><div><h1>The Waffle Bar &middot; Tray Closing Report</h1><div id="pSub"></div></div></div>
+<div id="out"></div>
+<div class="psign"><span>Rameez Ahmed<br>Head of Inventory and Audit</span><span>Branch Manager</span></div>
+<div class="note">Stock In Hand = Opening + Transfer In &minus; Transfer Out. Expected = Stock In Hand &minus; Total Sales &minus; Void &minus; Discard. Difference = Expected &minus; Physical (positive = Short, negative = Excess). Combined mode: Opening = first selected date, Physical = last selected date, everything else (transfers, sales, void, discard) is summed.</div>
+</div>
+<script>
+const __SRC=document.documentElement.outerHTML;
+let rows=[["2026-11-03", "Sindhi Muslim Branch (Walk-In)", "Brownie Tray 1 Pcs", 35, 0, 0, 2, 0, 0, 80], ["2026-11-03", "Sindhi Muslim Branch (Walk-In)", "Waffle Tray 1 Pcs", 320, 0, 0, 83, 0, 0, 330], ["2026-11-03", "The Waffle Bar Bahadurabad (Walk-In)", "Brownie Tray 1 Pcs", 0, 0, 0, 2, 0, 0, 0], ["2026-11-03", "The Waffle Bar Bahadurabad (Walk-In)", "Waffle Tray 1 Pcs", 302, 0, 0, 110, 3, 0, 180], ["2026-11-03", "The Waffle bar - Online", "Waffle Tray 1 Pcs", 72, 200, 0, 72, 0, 0, 110], ["2026-11-03", "The Waffle Bar Bahadurabad", "Waffle Tray 1 Pcs", 0, 0, 0, 84, 0, 0, 0], ["2026-11-03", "Dairy Feast", "Brownie Tray 1 Pcs", 54, 30, 0, 14, 0, 0, 57], ["2026-11-03", "Dairy Feast", "Waffle Tray 1 Pcs", 211, 200, 0, 141, 0, 0, 260], ["2026-11-03", "Creek Walk", "Waffle Tray 1 Pcs", 156, 0, 0, 36, 0, 0, 109]];let sel=new Set(),mode='c';
+const $=s=>document.querySelector(s);
+const NK=s=>String(s==null?'':s).toLowerCase().replace(/[^a-z]/g,'');
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const fmt=n=>(Math.round(n*100)/100).toLocaleString('en-US');
+const ITEMS=['Brownie Tray 1 Pcs','Waffle Tray 1 Pcs'];
+const BLOCKS=[
+ {name:'The Waffle Bar Bahadurabad (Walk-In)',stock:'The Waffle Bar Bahadurabad (Walk-In)',sales:[['The Waffle Bar Bahadurabad (Walk-In)','The Waffle Bar Bahadurabad (Walk-In)'],['The Waffle Bar (Pick Up)','The Waffle Bar (Pick Up)']]},
+ {name:'Dairy Feast',stock:'Dairy Feast',sales:[['Dairy Feast','Dairy Feast']]},
+ {name:'The Waffle Bar - Online',stock:'The Waffle bar - Online',sales:[['The Waffle Bar Bahadurabad','The Waffle Bar Bahadurabad'],['The Waffle bar - Online','The Waffle bar - Online']]},
+ {name:'Creek Walk',stock:'Creek Walk',sales:[['Creek Walk','Creek Walk']]},
+ {name:'Sindhi Muslim Branch (Walk-In)',stock:'Sindhi Muslim Branch (Walk-In)',sales:[['Sindhi Muslim Branch (Walk-In)','Sindhi Muslim Branch (Walk-In)']]}];
+const dates=()=>[...new Set(rows.map(r=>r[0]))].sort().reverse();
+const longD=d=>new Date(d+'T00:00:00').toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
+const shortD=d=>new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
+const itemIdx=n=>{const k=NK(n);return ITEMS.findIndex(i=>NK(i)===k);};
+// compute a table for a set of dates
+function calc(ds){
+ const set=new Set(ds),sorted=[...ds].sort();const res=[];
+ for(const b of BLOCKS){
+  const items=[];
+  ITEMS.forEach((it,ii)=>{
+   const st=rows.filter(r=>set.has(r[0])&&NK(r[1])===NK(b.stock)&&itemIdx(r[2])===ii).sort((a,c)=>a[0]<c[0]?-1:1);
+   const sl=b.sales.map(([k])=>rows.filter(r=>set.has(r[0])&&NK(r[1])===NK(k)&&itemIdx(r[2])===ii).reduce((s,r)=>s+r[6],0));
+   const anySale=sl.some(x=>x);
+   if(!st.length&&!anySale)return;
+   const o=st.length?st[0][3]:0,ti=st.reduce((s,r)=>s+r[4],0),to=st.reduce((s,r)=>s+r[5],0),vd=st.reduce((s,r)=>s+r[7],0),dc=st.reduce((s,r)=>s+r[8],0),ph=st.length?st[st.length-1][9]:0;
+   const sih=o+ti-to,ts=sl.reduce((a,c)=>a+c,0),ex=sih-ts-vd-dc,df=ex-ph;
+   items.push({it,o,ti,to,sih,sl,ts,vd,dc,ph,ex,df,st:df>0?'Short':df<0?'Excess':'Match'});
+  });
+  if(items.length){const d=items.reduce((s,x)=>s+x.df,0);res.push({b,items,df:d,st:d>0?'Short':d<0?'Excess':'Match'});}
+ }
+ return res;
+}
+const heads=b=>['S.no','Item Name','Opening Stock','Transfer In','Transfer Out','Stock In Hand',...b.sales.map(s=>s[1]),...(b.sales.length>1?['Total Sales']:[]),'Made Void','Discard','Physical Count','Expected Stock','Difference','Short / Excess'];
+const cells=(x,b,i)=>[String(i+1),x.it,x.o,x.ti,x.to,x.sih,...x.sl,...(b.sales.length>1?[x.ts]:[]),x.vd,x.dc,x.ph,x.ex,x.df,x.st];
+function tableHTML(blk){
+ const b=blk.b,H=heads(b);let h='<div class="tw"><table><thead><tr>'+H.map((t,i)=>`<th class="${i<2?'l':(i>=6&&i<6+b.sales.length?'sl':'')}">${esc(t)}</th>`).join('')+'</tr></thead><tbody>';
+ h+=`<tr class="g"><td class="l" colspan="${H.length-2}">${esc(b.name)}</td><td class="d">${fmt(blk.df)}</td><td><span class="pill ${blk.st}">${blk.st}</span></td></tr>`;
+ blk.items.forEach((x,i)=>{const c=cells(x,b,i);h+=`<tr class="${x.st==='Short'?'rs':x.st==='Excess'?'re':''}">`+c.map((v,j)=>{
+  if(j===c.length-1)return `<td><span class="pill ${v}">${v}</span></td>`;if(j===0)return `<td class="l">${v}</td>`;if(j===1)return `<td class="l">${esc(v)}</td>`;
+  return `<td class="${j===c.length-2?'d':''}${j>=6&&j<6+b.sales.length?' sc':''}">${fmt(v)}</td>`;}).join('')+'</tr>';});
+ return h+'</tbody></table></div>';
+}
+function render(){
+ const ds=dates();$('#chips').innerHTML=ds.map(d=>`<button class="chip ${sel.has(d)?'on':''}" data-d="${d}">${shortD(d)}</button>`).join('');
+ document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{const d=c.dataset.d;sel.has(d)?sel.delete(d):sel.add(d);render();});
+ $('#m1').classList.toggle('on',mode==='c');$('#m2').classList.toggle('on',mode==='d');
+ const chosen=ds.filter(d=>sel.has(d)).sort();
+ $('#sub').textContent=chosen.length?(chosen.length===1?longD(chosen[0]):chosen.length+' dates: '+chosen.map(shortD).join(', ')):'No date selected';
+ $('#pSub').textContent=$('#sub').textContent;
+ if(!chosen.length){$('#out').innerHTML='<div class="note">Select one or more dates above.</div>';$('#tiles').innerHTML='';return;}
+ const secs=(mode==='c'||chosen.length===1)?[{t:null,ds:chosen}]:chosen.map(d=>({t:longD(d),ds:[d]}));
+ let html='';let S=0,E=0,M=0;
+ secs.forEach((s,si)=>{const bl=calc(s.ds);if(s.t)html+=`<div class="sec">${s.t}</div>`;bl.forEach(b=>html+=tableHTML(b));
+  if(si===0||mode==='d')bl.forEach(b=>b.items.forEach(x=>{if(mode==='c'||secs.length===1||true){x.st==='Short'?S++:x.st==='Excess'?E++:M++;}}));});
+ $('#out').innerHTML=html;
+ $('#tiles').innerHTML=[['Short items',S,'var(--red)'],['Excess items',E,'var(--amb)'],['Match items',M,'var(--grn)'],['Dates selected',chosen.length,'var(--navy2)']].map(([k,v,c])=>`<div class="tile" style="--c:${c}"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
+}
+$('#m1').onclick=()=>{mode='c';render();};$('#m2').onclick=()=>{mode='d';render();};
+$('#aAll').onclick=()=>{dates().forEach(d=>sel.add(d));render();};$('#aClr').onclick=()=>{sel.clear();render();};
+$('#aLast').onclick=()=>{sel=new Set(dates().slice(0,1));render();};
+$('#prn').onclick=()=>window.print();
+// ---------- PDF
+const HW=[278,278,355,556,556,889,667,191,333,333,389,584,278,333,278,278,556,556,556,556,556,556,556,556,556,556,278,278,584,584,584,556,1015,667,667,722,722,667,611,778,722,278,500,667,556,833,722,778,667,778,722,667,611,722,667,944,667,667,611,278,278,278,469,556,333,556,556,500,556,556,278,556,556,222,222,500,222,833,556,556,556,556,333,500,278,556,500,722,500,500,500,334,260,334,584];
+const tw=(s,sz,b)=>{let w=0;for(const ch of String(s)){const c=ch.charCodeAt(0);w+=(c>=32&&c<=126?HW[c-32]:556);}return w*sz/1000*(b?1.07:1);};
+const pdfS=s=>String(s).replace(/[^\x20-\x7e]/g,m=>m==='−'||m==='–'?'-':'?').replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');
+function makePDF(secs,sub){
+ const W=842,H=595,M=22;const pages=[];let cur,y;
+ const rgb=h=>[1,3,5].map(i=>(parseInt(h.slice(i,i+2),16)/255).toFixed(3)).join(' ');
+ const rect=(x,y0,w,h,c)=>cur.push(`${rgb(c)} rg ${x.toFixed(2)} ${(H-y0-h).toFixed(2)} ${w.toFixed(2)} ${h.toFixed(2)} re f`);
+ const text=(s,x,y0,sz,c,b)=>cur.push(`BT /${b?'F2':'F1'} ${sz} Tf ${rgb(c)} rg ${x.toFixed(2)} ${(H-y0).toFixed(2)} Td (${pdfS(s)}) Tj ET`);
+ const line=(x0,y0,x1,c)=>cur.push(`${rgb(c)} RG 0.4 w ${x0} ${(H-y0).toFixed(2)} m ${x1} ${(H-y0).toFixed(2)} l S`);
+ const fit=(s,w,sz,b)=>{s=String(s);if(tw(s,sz,b)<=w)return s;while(s.length>1&&tw(s+'..',sz,b)>w)s=s.slice(0,-1);return s+'..';};
+ const np=()=>{cur=[];pages.push(cur);text('The Waffle Bar - Tray Closing Report',M,M+14,16,'#12355b',true);text(sub,M,M+28,9,'#444444');line(M,M+34,W-M,'#12355b');y=M+42;};
+ np();
+ for(const s of secs){
+  if(s.t){if(y>H-80)np();text(s.t,M,y+10,11,'#12355b',true);y+=18;}
+  for(const blk of s.bl){
+   const Hd=heads(blk.b),n=Hd.length;const base=Hd.map((t,i)=>i===0?22:i===1?96:i>=6&&i<6+blk.b.sales.length?(blk.b.sales.length>1?64:84):46);
+   const sc=(W-2*M)/base.reduce((a,b)=>a+b,0),cw=base.map(x=>x*sc);const cx=[];let x=M;for(const w of cw){cx.push(x);x+=w;}
+   const need=24+12+blk.items.length*14+10;if(y+need>H-30)np();
+   const yT=y;rect(M,y,W-2*M,22,'#12355b');blk.b.sales.forEach((_,k)=>rect(cx[6+k],y,cw[6+k],22,'#0e7c86'));Hd.forEach((t,i)=>{const wl=[];let c0='';for(const wd of String(t).split(/\s+/)){const t2=c0?c0+' '+wd:wd;if(tw(t2,5.8,true)<=cw[i]-3||!c0)c0=t2;else{wl.push(c0);c0=wd;}}if(c0)wl.push(c0);const ls=wl.slice(0,3);const y0=y+(ls.length>2?6:ls.length>1?9:14);ls.forEach((f,k)=>text(f,(i<2||(i>=6&&i<6+blk.b.sales.length))?cx[i]+2:cx[i]+cw[i]-2-tw(f,5.8,true),y0+k*6.4,5.8,'#ffffff',true));if(i>0)cur.push(`1 1 1 RG 0.3 w ${cx[i].toFixed(2)} ${(H-yT).toFixed(2)} m ${cx[i].toFixed(2)} ${(H-yT-22).toFixed(2)} l S`);});y+=22;const yI=y+14;const yTint=y;
+   rect(M,y,W-2*M,14,'#e9eff7');text(blk.b.name,M+3,y+10,8.5,'#12355b',true);
+   const ds=fmt(blk.df);text(ds,cx[n-2]+cw[n-2]-2-tw(ds,8.5,true),y+10,8.5,'#12355b',true);text(blk.st,cx[n-1]+cw[n-1]-2-tw(blk.st,8.5,true),y+10,8.5,blk.st==='Short'?'#d64545':blk.st==='Excess'?'#b3750a':'#1f9d63',true);y+=14;
+   blk.items.forEach((it,ri)=>{const c=cells(it,blk.b,ri);blk.b.sales.forEach((_,k)=>rect(cx[6+k],y,cw[6+k],14,'#e3f2f3'));c.forEach((v,i)=>{const sv=(i>1&&i<n-1)?fmt(v):String(v);const col=i===n-1?(v==='Short'?'#d64545':v==='Excess'?'#b3750a':'#1f9d63'):(i===n-2&&it.st==='Short'?'#d64545':i===n-2&&it.st==='Excess'?'#b3750a':'#000000');
+    const f=fit(sv,cw[i]-3,8,i>=n-2);text(f,i<2?cx[i]+2:cx[i]+cw[i]-2-tw(f,8,i>=n-2),y+10,8,col,i>=n-2);});line(M,y+13,W-M,'#dddddd');y+=14;});
+   cx.slice(2).forEach(xv=>{cur.push(`0.75 0.78 0.82 RG 0.3 w ${xv.toFixed(2)} ${(H-yI).toFixed(2)} m ${xv.toFixed(2)} ${(H-y).toFixed(2)} l S`);});y+=10;}
+ }
+ if(y>H-50)np();y+=24;line(M,y,M+200,'#000000');line(W-M-200,y,W-M,'#000000');text('Rameez Ahmed - Head of Inventory and Audit',M,y+10,8,'#000000');text('Branch Manager',W-M-200,y+10,8,'#000000');
+ return buildPDF(pages,W,H);
+}
+function buildPDF(pages,W,H){
+ const objs=[];const add=s=>{objs.push(s);return objs.length;};
+ add('<< /Type /Catalog /Pages 2 0 R >>');add('');const f1=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>'),f2=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>');
+ const kids=[];for(const p of pages){const st=p.join('\n');const ci=add(`<< /Length ${st.length} >>\nstream\n${st}\nendstream`);kids.push(add(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${W} ${H}] /Resources << /Font << /F1 ${f1} 0 R /F2 ${f2} 0 R >> >> /Contents ${ci} 0 R >>`));}
+ objs[1]=`<< /Type /Pages /Kids [${kids.map(k=>k+' 0 R').join(' ')}] /Count ${kids.length} >>`;
+ let out='%PDF-1.4\n';const offs=[];objs.forEach((o,i)=>{offs.push(out.length);out+=`${i+1} 0 obj\n${o}\nendobj\n`;});
+ const xr=out.length;out+=`xref\n0 ${objs.length+1}\n0000000000 65535 f \n`+offs.map(o=>String(o).padStart(10,'0')+' 00000 n \n').join('')+`trailer\n<< /Size ${objs.length+1} /Root 1 0 R >>\nstartxref\n${xr}\n%%EOF`;
+ const u8=new Uint8Array(out.length);for(let i=0;i<out.length;i++)u8[i]=out.charCodeAt(i)&255;return u8;}
+async function savePdf(blob,name){
+ if(window.showSaveFilePicker){try{const h=await showSaveFilePicker({suggestedName:name,types:[{description:'PDF file',accept:{'application/pdf':['.pdf']}}]});const w=await h.createWritable();await w.write(blob);await w.close();return;}catch(e){if(e&&e.name==='AbortError')return;}}
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);}
+$('#pdf').onclick=()=>{const chosen=dates().filter(d=>sel.has(d)).sort();if(!chosen.length){alert('Select a date first.');return;}
+ const secs=(mode==='c'||chosen.length===1)?[{t:null,ds:chosen}]:chosen.map(d=>({t:longD(d),ds:[d]}));secs.forEach(s=>s.bl=calc(s.ds));
+ savePdf(new Blob([makePDF(secs,$('#sub').textContent)],{type:'application/pdf'}),'Tray_Closing_Report_'+chosen[0]+(chosen.length>1?'_to_'+chosen[chosen.length-1]:'')+'.pdf');};
+// ---------- Excel connect
+async function unzip(buf){const dv=new DataView(buf),u8=new Uint8Array(buf);let e=u8.length-22;while(e>=0&&dv.getUint32(e,true)!==0x06054b50)e--;
+ if(e<0)throw new Error('Not an xlsx file');const n=dv.getUint16(e+10,true);let p=dv.getUint32(e+16,true);const files={};
+ for(let i=0;i<n;i++){const method=dv.getUint16(p+10,true),cs=dv.getUint32(p+20,true),nl=dv.getUint16(p+28,true),el=dv.getUint16(p+30,true),cl=dv.getUint16(p+32,true),lo=dv.getUint32(p+42,true);
+  files[new TextDecoder().decode(u8.subarray(p+46,p+46+nl))]={method,cs,lo};p+=46+nl+el+cl;}
+ return async name=>{const f=files[name];if(!f)return null;const ln=dv.getUint16(f.lo+26,true),le=dv.getUint16(f.lo+28,true);const s=f.lo+30+ln+le;const data=u8.subarray(s,s+f.cs);
+  if(f.method===0)return new TextDecoder().decode(data);return await new Response(new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text();};}
+const xml=s=>new DOMParser().parseFromString(s,'application/xml');
+const colIdx=r=>{let n=0;for(const ch of r.replace(/\d/g,''))n=n*26+ch.charCodeAt(0)-64;return n-1;};
+async function readSheets(buf){
+ const get=await unzip(buf);const wb=xml(await get('xl/workbook.xml')),rel=xml(await get('xl/_rels/workbook.xml.rels'));
+ const ss=[];const sx=await get('xl/sharedStrings.xml');if(sx)xml(sx).querySelectorAll('si').forEach(si=>ss.push([...si.querySelectorAll('t')].map(t=>t.textContent).join('')));
+ const targets={};rel.querySelectorAll('Relationship').forEach(r=>targets[r.getAttribute('Id')]=r.getAttribute('Target'));const out={};
+ for(const s of wb.querySelectorAll('sheet')){const name=s.getAttribute('name');
+  let tg=targets[s.getAttribute('r:id')]||targets[[...s.attributes].find(a=>a.name.endsWith(':id'))?.value];tg=tg.replace(/^\//,'');if(!tg.startsWith('xl/'))tg='xl/'+tg;
+  const sh=xml(await get(tg));const rws=[];
+  sh.querySelectorAll('row').forEach(r=>{const arr=[];r.querySelectorAll('c').forEach(c=>{const t=c.getAttribute('t'),v=c.querySelector('v');let val=null;
+   if(t==='s'&&v)val=ss[+v.textContent];else if(t==='inlineStr')val=[...c.querySelectorAll('t')].map(x=>x.textContent).join('');else if(t==='str'||t==='e')val=v?v.textContent:null;else if(v&&v.textContent!=='')val=parseFloat(v.textContent);
+   arr[colIdx(c.getAttribute('r'))]=val;});rws[+r.getAttribute('r')-1]=arr;});out[name]=rws;}
+ return out;}
+const dOf=v=>{if(typeof v==='number')return new Date(Math.round((v-25569)*86400000)).toISOString().slice(0,10);if(!v)return null;const s=String(v).trim();let m=s.match(/^(\d{4})-(\d{2})-(\d{2})/);if(m)return m[1]+'-'+m[2]+'-'+m[3];m=s.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/);return m?m[3]+'-'+m[2].padStart(2,'0')+'-'+m[1].padStart(2,'0'):null;};
+const COLS={date:['date'],branch:['branch'],item:['itemname'],open:['opening'],trin:['trasferinn','transferinn','transferin'],trout:['trasferout','transferout'],sales:['sales'],void:['madevoid','void'],disc:['discard'],phys:['physicalcount','physical']};
+function parseRows(arrs){let map=null;const out=[];const f=x=>typeof x==='number'?x:(parseFloat(String(x==null?0:x).replace(/,/g,''))||0);
+ for(const c of arrs){if(!c)continue;const names=c.map(NK);const m={};let ok=true;for(const k in COLS){const i=names.findIndex(n=>COLS[k].includes(n));if(i<0){ok=false;break;}m[k]=i;}if(ok){map=m;continue;}
+  if(!map)continue;const d=dOf(c[map.date]);if(!d||!c[map.branch]||!c[map.item]||itemIdx(String(c[map.item]).trim())<0)continue;
+  out.push([d,String(c[map.branch]).trim(),String(c[map.item]).trim(),f(c[map.open]),f(c[map.trin]),f(c[map.trout]),f(c[map.sales]),f(c[map.void]),f(c[map.disc]),f(c[map.phys])]);}
+ return out;}
+async function loadFromBuffer(buf,label){
+ const sh=await readSheets(buf);let nw=[],used='';
+ const names=Object.keys(sh).sort((a,b)=>(a==='Report Data'?-1:0)-(b==='Report Data'?-1:0));
+ for(const n of names){const r=parseRows(sh[n]);if(r.length>nw.length){nw=r;used=n;}if(n==='Report Data'&&r.length)break;}
+ if(!nw.length)throw new Error('No Brownie/Waffle Tray data found in this file (Report Data sheet required)');
+ const old=dates();{const nd0=new Set(nw.map(r=>r[0]));nw=rows.filter(r=>!nd0.has(r[0])).concat(nw);}rows=nw;const nd=dates();
+ if(!sel.size||![...sel].some(d=>nd.includes(d)))sel=new Set(nd.slice(0,1));else sel=new Set([...sel].filter(d=>nd.includes(d)));
+ render();
+ $('#link').textContent='Excel connected: '+label+' (sheet: '+used+') · '+rows.length+' rows, '+nd.length+' dates · last read at '+new Date().toLocaleTimeString()+'. After saving the Excel file, click "Refresh" (it also checks automatically every 20 seconds).';}
+
+function bakeHTML(){let s='<!doctype html>'+__SRC;
+ const i=s.indexOf('let rows=[['),e=s.indexOf(';let sel=new Set()',i);
+ if(i<0||e<0)throw new Error('bake marker missing');
+ return s.slice(0,i)+'let rows='+JSON.stringify(rows).replace(/<\//g,'<\\/')+s.slice(e);}
+$('#bake').onclick=()=>{try{const b=new Blob([bakeHTML()],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='Tray_Closing_Report.html';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},800);}catch(e){alert('Could not save: '+e.message);}};
+
+let fh=null,lastMod=0;
+const idb=()=>new Promise((res,rej)=>{const r=indexedDB.open('tray_conn',1);r.onupgradeneeded=()=>r.result.createObjectStore('h');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);});
+async function hset(h){try{const d=await idb();d.transaction('h','readwrite').objectStore('h').put(h,'fh');}catch(e){}}
+async function hget(){try{const d=await idb();return await new Promise(res=>{const r=d.transaction('h').objectStore('h').get('fh');r.onsuccess=()=>res(r.result||null);r.onerror=()=>res(null);});}catch(e){return null;}}
+async function readHandle(force){if(!fh)return;let p=await fh.queryPermission({mode:'read'});if(p!=='granted'){if(!force)return;p=await fh.requestPermission({mode:'read'});}if(p!=='granted')return;
+ const file=await fh.getFile();if(!force&&file.lastModified===lastMod)return;lastMod=file.lastModified;try{await loadFromBuffer(await file.arrayBuffer(),file.name);}catch(e){$('#link').textContent='Could not read Excel: '+e.message;}}
+$('#conn').onclick=async()=>{
+ if(window.showOpenFilePicker){try{const [h]=await showOpenFilePicker({types:[{description:'Excel',accept:{'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':['.xlsx','.xlsm']}}]});fh=h;await hset(h);$('#refr').classList.remove('hide');lastMod=0;await readHandle(true);}catch(e){if(e.name!=='AbortError')$('#fi').click();}}
+ else $('#fi').click();};
+$('#fi').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{await loadFromBuffer(await f.arrayBuffer(),f.name);}catch(er){$('#link').textContent='Could not read Excel: '+er.message;}e.target.value='';};
+$('#refr').onclick=()=>{lastMod=0;readHandle(true);};
+setInterval(()=>{if(!document.hidden)readHandle(false);},20000);
+(async()=>{fh=await hget();if(fh){$('#refr').classList.remove('hide');$('#link').textContent='A previously connected Excel file was found. Click "Refresh" (the browser will ask for permission once).';}})();
+sel=new Set(dates().slice(0,1));render();
+</script></body></html>
