@@ -1,0 +1,465 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>bekd Closing Stock Report</title>
+<style>
+:root{--ink:#16202b;--mut:#64748b;--bg:#eef1f5;--pan:#fff;--line:#e5e9ef;--navy:#12355b;--navy2:#1d4d80;--teal:#0f9d8a;--red:#d64545;--amb:#e09a1a;--grn:#1f9d63;--redbg:#fdecec;--ambbg:#fff4de;--grnbg:#e5f6ee;--shadow:0 1px 2px rgba(16,32,48,.06),0 4px 14px rgba(16,32,48,.06)}
+@media(prefers-color-scheme:dark){:root{--ink:#e8edf3;--mut:#93a1b3;--bg:#12171d;--pan:#1b222b;--line:#2b3541;--navy:#2c5d93;--navy2:#3b73b0;--redbg:#3a2224;--ambbg:#3a3020;--grnbg:#1c3429;--shadow:none}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:14px}
+.wrap{max-width:1600px;margin:0 auto;padding:16px 18px 28px}
+.stick{position:sticky;top:0;z-index:30;background:var(--bg);padding:8px 0 8px;margin-top:-8px}
+.hdr{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:linear-gradient(120deg,var(--navy),var(--navy2));color:#fff;border-radius:14px 14px 0 0;padding:9px 16px;box-shadow:var(--shadow)}
+.logo{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.16);display:grid;place-items:center;font-family:Georgia,serif;font-size:19px}
+.hdr h1{margin:0;font-family:Georgia,serif;font-weight:400;font-size:20px;letter-spacing:.2px}
+.hdr .sub{opacity:.85;font-size:12px;margin-top:1px}
+.hdr .sp{flex:1}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font:inherit;font-weight:600;font-size:13px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;border-radius:9px;padding:7px 12px;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
+.btn:hover{background:rgba(255,255,255,.22)}
+.btn.pri{background:#fff;color:var(--navy);border-color:#fff}.btn.pri:hover{background:#eaf1fa}
+.link{color:var(--mut);font-size:12px;margin:8px 4px 0}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.tab{font:inherit;font-weight:600;padding:8px 14px;border:none;background:transparent;color:var(--mut);cursor:pointer}
+.tab.on{background:var(--navy);color:#fff}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--pan);border:1px solid var(--line);border-radius:0 0 12px 12px;border-top:none;padding:8px 12px;box-shadow:var(--shadow)}
+select,input,textarea,.sb{font:inherit;color:var(--ink);background:var(--pan);border:1px solid var(--line);border-radius:9px;padding:8px 11px}
+.sb{cursor:pointer;font-weight:600}.sb.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.sb.s.on{background:var(--red);border-color:var(--red)}.sb.e.on{background:var(--amb);border-color:var(--amb)}.sb.m.on{background:var(--grn);border-color:var(--grn)}
+.datesel{font-weight:700;font-size:14px;background:#fff6dc;color:#16202b;border-color:#ecd48a;min-width:210px}
+.nav{padding:8px 12px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) minmax(280px,1.6fr);gap:12px;margin:14px 0}
+.tile{background:var(--pan);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.tile:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--c,var(--navy2))}
+.tile .k{color:var(--mut);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.tile .v{font-family:Georgia,serif;font-size:38px;line-height:1.15;color:var(--c,var(--ink))}
+.tile .d{color:var(--mut);font-size:12px}
+.viz{grid-row:span 1;display:flex;gap:14px;align-items:center}
+.viz svg{flex:none}
+.leg{font-size:12px;color:var(--mut);display:grid;gap:3px}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}
+.catbox{background:var(--pan);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);margin-bottom:14px}
+.catbox h3{margin:0 0 8px;font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px 22px}
+.cat{display:grid;grid-template-columns:120px 1fr 34px;gap:8px;align-items:center;font-size:12px}
+.cat .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar{display:flex;height:10px;border-radius:6px;overflow:hidden;background:var(--line)}
+.bar b{display:block;height:100%}
+.card{background:var(--pan);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0;box-shadow:var(--shadow)}
+.tw{background:var(--pan);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th,td{padding:6px 5px;border-bottom:1px solid var(--line);text-align:right}
+td{white-space:nowrap}
+th{position:sticky;top:var(--stk,0px);background:var(--navy);color:#fff;font-weight:600;font-size:11.5px;line-height:1.15;vertical-align:bottom;white-space:normal;z-index:2}
+th.l,td.l{text-align:left}td.l:nth-child(2){white-space:normal}
+tr.g td{background:#e9eff7;font-weight:700;color:var(--navy);border-bottom:1px solid #d3deec}
+@media(prefers-color-scheme:dark){tr.g td{background:#232d39;color:#cfe0f3;border-color:#2b3541}}
+tbody tr:hover td{background:color-mix(in srgb,var(--navy2) 7%,transparent)}
+td.d{font-weight:700}
+.pill{display:inline-block;min-width:54px;text-align:center;font-weight:700;font-size:11px;padding:2px 8px;border-radius:20px}
+.pill.Short{background:var(--redbg);color:var(--red)}.pill.Excess{background:var(--ambbg);color:#b3750a}.pill.Match{background:var(--grnbg);color:var(--grn)}.pill.NoData{background:#eceff3;color:#7b8794}
+tr.rs td.d{color:var(--red)}tr.nd td{color:#9aa5b1}tr.re td.d{color:#b3750a}
+.note{color:var(--mut);font-size:12px}.hide{display:none!important}
+textarea{width:100%;height:120px;font-family:monospace;font-size:12px}
+.msg{margin-left:8px;font-size:13px}
+.formula{margin:10px 4px 0}
+.phead,.psign{display:none}
+@media(max-width:1250px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.viz{grid-column:span 2}}
+@media(max-width:1100px){th,td{padding:4px 3px;font-size:11px}th{font-size:10.5px}}
+@media(max-width:900px){.wrap{padding:8px}}
+@page{size:A4 landscape;margin:8mm}
+@media print{
+ body{background:#fff;color:#000;font-size:9px}.wrap{padding:0;max-width:none}
+ .stick,.hdr,.tabs,.ctl,.grid,.catbox,.card,.link,.formula,.noprint{display:none!important}
+ .phead{display:flex!important;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #12355b;padding-bottom:5px;margin-bottom:6px}
+ .phead h1{margin:0;font-family:Georgia,serif;font-weight:400;font-size:18px;color:#12355b}.phead div{font-size:10px}
+ .psign{display:flex!important;justify-content:space-between;margin-top:26px;font-size:10px;page-break-inside:avoid}
+ .psign span{display:block;border-top:1px solid #000;padding-top:3px;min-width:200px;text-align:center}
+ .tw{border:none;box-shadow:none;border-radius:0;overflow:visible}
+ table{font-size:8.2px}th,td{padding:2.2px 3px;border-bottom:1px solid #ccc}td.l:nth-child(2){white-space:nowrap!important}
+ th{position:static;background:#12355b!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ thead{display:table-header-group}tr{page-break-inside:avoid}
+ tr.g td,.pill,tr.rs td.d,tr.re td.d{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ tr.g td{background:#e9eff7!important;color:#12355b!important}
+ .pill{padding:0 4px;min-width:0;font-size:8px}
+}
+
+td.dy,th.dy{padding:3px 0;text-align:center;font-size:9.5px;min-width:0;letter-spacing:-.3px}th.dy{font-size:8px}
+td.dy{font-variant-numeric:tabular-nums}
+td.dy.s{background:var(--redbg);color:var(--red);font-weight:700}td.dy.e{background:var(--ambbg);color:#b3750a;font-weight:700}td.dy.m{color:var(--grn)}td.dy.n{color:#b9c1cb}
+.rank{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:10px 28px}
+.rank h3{margin:0 0 6px}.rk{display:grid;grid-template-columns:170px 1fr 56px;gap:8px;align-items:center;font-size:12px;margin:3px 0}
+.rk .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rk .bar b{background:var(--c)}
+@media(max-width:1400px){td.dy,th.dy{font-size:8.5px}}
+@media print{td.dy,th.dy{font-size:6.5px!important}td.dy.s,td.dy.e,th{-webkit-print-color-adjust:exact;print-color-adjust:exact}.rank{display:none}}
+</style></head><body><div class="wrap">
+<div class="stick"><div class="hdr"><div class="logo">b</div><div><h1>bekd · Closing Stock Report</h1><div class="sub" id="sub"></div></div><div class="sp"></div>
+ <div class="acts"><button class="btn pri" id="pdf">&#8681; Save PDF</button><button class="btn" id="prn">&#128424; Print</button><button class="btn" id="conn">&#128279; Connect Excel</button><button class="btn hide" id="refr">&#8635; Refresh</button><button class="btn" id="imp">Paste data</button><button class="btn" id="adjb">Adjustments</button></div></div>
+<div class="ctl">
+ <span class="seg"><button class="tab on" id="t1">Bek-d Bahadurabad</button><button class="tab" id="t2">Bek-d SMCHS</button></span>
+ <span class="seg"><button class="tab on" id="v1">Daily Report</button><button class="tab" id="v2">Monthly Grand Report</button></span>
+ <span id="dayCtl" style="display:contents"><button class="sb nav" id="prev" title="Previous date">&#9664;</button>
+ <select id="date" class="datesel" aria-label="Report date"></select>
+ <button class="sb nav" id="next" title="Next date">&#9654;</button></span>
+ <select id="month" class="datesel hide" aria-label="Month"></select>
+ <span id="fltCtl" style="display:contents"><button class="sb f on" data-f="">All</button><button class="sb s f" data-f="Short">Short</button><button class="sb e f" data-f="Excess">Excess</button><button class="sb m f" data-f="Match">Match</button></span>
+ <input id="q" type="search" placeholder="Search item or category" style="min-width:180px">
+</div></div>
+<div class="link" id="link">Excel connected nahi hai: built-in 23-Oct data dikh raha hai. "Connect Excel" dabayein aur apni workbook chunein.</div>
+<input type="file" id="fi" accept=".xlsx,.xlsm" class="hide">
+<div class="card hide" id="impBox"><b>Paste Report Data</b>
+ <div class="note">Excel mein Report Data sheet ka naya din select karke copy karein (columns A se T tak) aur yahan paste karein. Same date dobara paste karne par purana data replace ho jata hai.</div>
+ <textarea id="paste" placeholder="Paste here"></textarea>
+ <div style="margin-top:8px"><button class="sb" id="add">Add to data</button> <button class="sb" id="reset">Reset to original data</button><span class="msg" id="msg"></span></div></div>
+<div class="card hide" id="adjBox"><b>Manual adjustments for the selected date</b>
+ <div class="note">Sales: Total Sales mein jud jata hai · Transfer Out: Transfer Out mein jud jata hai · Physical: Physical Count mein jud jata hai (negative qty se kam hota hai).</div>
+ <div style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0"><input id="aItem" list="items" placeholder="Item name" style="min-width:220px"><datalist id="items"></datalist>
+ <select id="aType"><option>Sales</option><option>Transfer Out</option><option>Physical</option></select><input id="aQty" type="number" step="any" placeholder="Qty" style="width:100px"><button class="sb" id="aAdd">Add</button></div>
+ <div id="aList"></div></div>
+<div class="grid" id="tiles"></div>
+<div class="catbox" id="cats"></div>
+<div class="note hide" id="ndn" style="margin:-4px 4px 12px"></div>
+<div class="phead"><div><h1>bekd · Closing Stock Report</h1><div id="pSub"></div></div><div id="pDate" style="text-align:right"></div></div>
+<div class="tw"><table id="tbl"></table></div>
+<div class="psign"><span>Rameez Ahmed<br>Head of Inventory and Audit</span><span>Branch Manager</span></div>
+<div class="note formula">Difference = Expected − Physical. Positive = Short, negative = Excess. Expected = Opening + Transfer In − Transfer Out − Total Sales − Made Void − Discard.</div>
+</div>
+<script>
+const BASE={"layout": {"bahadurabad": [{"group": "Cookies", "items": [{"name": "Snicker Bomb Cookie 1 Pcs", "unit": "Pcs", "alts": ["Snicker Bomb Cookie"]}, {"name": "Dubai Viral Cookie 1 Pcs", "unit": "Pcs", "alts": ["Dubai Viral Cookie"]}, {"name": "Kinder Bueno Bomb Cookie 1 Pcs", "unit": "Pcs", "alts": ["Kinder Bueno Bomb Cookie"]}, {"name": "Choco Bomb Cookie 1 Pcs", "unit": "Pcs", "alts": ["Choco Bomb Cookie"]}, {"name": "Choco Chunk Cookie 1 Pcs", "unit": "Pcs", "alts": ["Choco Chunk Cookie"]}, {"name": "OG Nutella Bomb Cookie 1 Pcs", "unit": "Pcs", "alts": ["OG Nutella Bomb Cookie"]}, {"name": "OG Chunk Cookie 1 Pcs", "unit": "Pcs", "alts": ["OG Chunk Cookie"]}, {"name": "Ferrero Rocher Cookie 1 Pcs", "unit": "Pcs", "alts": ["Ferrero Rocher Cookie"]}, {"name": "Lindt Madness Cookie 1 Pcs", "unit": "Pcs", "alts": ["Lindt Madness Cookie"]}]}, {"group": "Molten Pull Down Cookies", "items": [{"name": "Viral Milk Chocolate Cookie 1 Pcs", "unit": "Pcs", "alts": ["Viral Milk Chocolate Cookie"]}, {"name": "Viral Triple Chocolate Cookie 1 Pcs", "unit": "Pcs", "alts": ["Viral Triple Chocolate Cookie"]}]}, {"group": "Chocolate", "items": [{"name": "Ferrero Rocher Chocolate 1 Pcs", "unit": "Pcs", "alts": ["Ferrero Rocher Chocolate"]}, {"name": "KitKat Chocolate 4 Finger 1 Pcs", "unit": "Pcs", "alts": ["KitKat chocolate 4 finger (New)"]}, {"name": "Dairy Milk Chocolate 1 Pcs", "unit": "Pcs", "alts": ["Dairy Milk Chocolate"]}, {"name": "Kinder Bueno Chocolate 1 Pcs", "unit": "Pcs", "alts": ["Kinder Bueno Chocolate (New)"]}]}, {"group": "Confectionary", "items": [{"name": "Lotus Bisscoff Crumbs 50 Gm", "unit": "gm", "alts": ["Lotus Bisscoff Crumbs"]}, {"name": "Oreo Crumbs 50 Gm", "unit": "gm", "alts": ["Oreo Crumbs"]}]}, {"group": "Ice Cream Soft Serve", "items": [{"name": "vanilla soft serve 19 Cup", "unit": "Cup", "alts": ["vanilla soft serve"]}, {"name": "Milo Soft Serve 23 Cup", "unit": "Cup", "alts": ["Milo Soft Serve"]}]}, {"group": "Scoopable Cookie Dough", "items": [{"name": "Triple Chocolate Dough 2770 Gm", "unit": "Gm", "alts": ["Triple Chocolate Dough"]}, {"name": "Dubai Viral Dough (half Pan) 1300 Gm", "unit": "Gm", "alts": ["Dubai Viral Dough", "Dubai Viral Dough (half Pan)"]}, {"name": "Nutella Lava Dough 2630 Gm", "unit": "Gm", "alts": ["Nutella Lava Dough"]}, {"name": "Kinder Bueno Dough 2770 Gm", "unit": "Gm", "alts": ["Kinder Bueno Dough"]}]}, {"group": "Spreads", "items": [{"name": "Kinder Bueno Spread", "unit": "Gm"}, {"name": "Nutella Spread", "unit": "Gm"}, {"name": "Pistachio Spread", "unit": "Gm"}, {"name": "Lotus Spread", "unit": "Gm"}]}, {"group": "Mixed Item", "items": [{"name": "Brownie 1 Pcs", "unit": "Pcs", "alts": ["Brownie"]}, {"name": "Chimny Dough 1 Pcs", "unit": "Pcs", "alts": ["Chimny Dough"]}, {"name": "Water 1 Pcs", "unit": "Pcs", "alts": ["Water"]}, {"name": "Kunafa Khushri", "unit": "Gm"}, {"name": "Salmans Chocolate Toping Syrup 623 ML", "unit": "ML", "alts": ["Chocolate Toping Syrup"]}]}, {"group": "Croissants N More", "items": [{"name": "Croffle 1 Pcs", "unit": "Pcs", "alts": ["Croffle"]}, {"name": "Croissant 1 Pcs", "unit": "Pcs", "alts": ["Croissant"]}]}, {"group": "Ice Cream", "items": [{"name": "Gelato Belgian Chocolate 4 KG", "unit": "Gm", "alts": ["Gelato Belgian Chocolate"]}, {"name": "Vanilla Icecream Scoop 6 KG", "unit": "ML", "alts": ["Vanilla Icecream Scoop"]}, {"name": "Magnum 1 Pcs", "unit": "Pcs", "alts": ["Magnum"]}]}, {"group": "coffee item", "items": [{"name": "Milk Dayfresh 1 Ltr", "unit": "ML", "alts": ["Milk Dayfresh"]}, {"name": "Comelle Condensed Milk 1 KG", "unit": "Gm", "alts": ["Condensed Milk"]}, {"name": "Tea Bag \u2013 Tapal 30 Pcs", "unit": "Pcs", "alts": ["Tea Bag \u2013 Tapal"]}, {"name": "Tiramisu Cake 1 Pcs", "unit": "Pcs", "alts": ["Tiramisu Cake"]}, {"name": "Glass 16 oz With Lid 1 Pcs", "unit": "Pcs", "alts": ["Glass 16 oz With Lid"]}, {"name": "Glass 12 oz With Lid 1 Pcs", "unit": "Pcs", "alts": ["Glass 12 oz With Lid"]}, {"name": "Hot Cup 8 oz With Lid 1 Pcs", "unit": "Pcs", "alts": ["Hot Cup 8 oz With Lid"]}]}], "smchs": [{"group": "Cookies", "items": [{"name": "Snicker Bomb Cookie 1 Pcs", "unit": "Pcs", "alts": ["Snicker Bomb Cookie"]}, {"name": "Dubai Viral Cookie 1 Pcs", "unit": "Pcs", "alts": ["Dubai Viral Cookie"]}, {"name": "Kinder Bueno Bomb Cookie 1 Pcs", "unit": "Pcs", "alts": ["Kinder Bueno Bomb Cookie"]}, {"name": "Choco Bomb Cookie 1 Pcs", "unit": "Pcs", "alts": ["Choco Bomb Cookie"]}, {"name": "Choco Chunk Cookie 1 Pcs", "unit": "Pcs", "alts": ["Choco Chunk Cookie"]}, {"name": "OG Nutella Bomb Cookie 1 Pcs", "unit": "Pcs", "alts": ["OG Nutella Bomb Cookie"]}, {"name": "OG Chunk Cookie 1 Pcs", "unit": "Pcs", "alts": ["OG Chunk Cookie"]}, {"name": "Ferrero Rocher Cookie 1 Pcs", "unit": "Pcs", "alts": ["Ferrero Rocher Cookie"]}, {"name": "Lindt Madness Cookie 1 Pcs", "unit": "Pcs", "alts": ["Lindt Madness Cookie"]}]}, {"group": "Scoopable Cookie Dough", "items": [{"name": "Triple Chocolate Dough 2770 Gm", "unit": "Gm", "alts": ["Triple Chocolate Dough"]}, {"name": "Dubai Viral Dough (half Pan) 1300 Gm", "unit": "Gm", "alts": ["Dubai Viral Dough", "Dubai Viral Dough (half Pan)"]}, {"name": "Nutella Lava Dough 2630 Gm", "unit": "Gm", "alts": ["Nutella Lava Dough"]}, {"name": "Kinder Bueno Dough 2770 Gm", "unit": "Gm", "alts": ["Kinder Bueno Dough"]}]}]}, "rows": [["2026-10-23", "Bek-d Walk in", "Biscuit Syrup", 1752.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1637.0], ["2026-10-23", "Bek-d Walk in", "Brownie", 19.5, 12.0, 0.0, 12.75, 0.0, 0.0, 21.0], ["2026-10-23", "Bek-d Walk in", "Caramel Syrup", 1350.0, 0.0, 0.0, 600.0, 0.0, 0.0, 700.0], ["2026-10-23", "Bek-d Walk in", "Cheesecake Syrup", 2513.0, 0.0, 0.0, 30.0, 0.0, 0.0, 2457.0], ["2026-10-23", "Bek-d Walk in", "Chimny Dough", 77.0, 194.0, 0.0, 135.0, 4.0, 0.0, 71.0], ["2026-10-23", "Bek-d Walk in", "Choco Bomb Cookie", 131.0, 0.0, 0.0, 30.0, 3.0, 0.0, 77.0], ["2026-10-23", "Bek-d Walk in", "Choco Chunk Cookie", 135.0, 0.0, 0.0, 9.0, 1.0, 0.0, 121.0], ["2026-10-23", "Bek-d Walk in", "Chocolate Toping Syrup", 900.0, 0.0, 0.0, 80.0, 0.0, 0.0, 830.0], ["2026-10-23", "Bek-d Walk in", "Cloudy Lemon", 3842.0, 0.0, 0.0, 10.0, 5.0, 0.0, 3204.0], ["2026-10-23", "Bek-d Walk in", "Cocoa Powder", 105.0, 0.0, 0.0, 25.0, 1.0, 0.0, 62.0], ["2026-10-23", "Bek-d Walk in", "Coconut Puree", 0.0, 0.0, 0.0, 25.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Walk in", "Coffee Beans", 2089.0, 2000.0, 0.0, 2286.0, 54.0, 0.0, 750.0], ["2026-10-23", "Bek-d Walk in", "Condensed Milk", 1924.0, 0.0, 0.0, 495.0, 5.0, 0.0, 1025.0], ["2026-10-23", "Bek-d Walk in", "Croffle", 11.0, 24.0, 0.0, 17.0, 1.0, 0.0, 9.0], ["2026-10-23", "Bek-d Walk in", "Croissant", 6.0, 54.0, 0.0, 38.0, 1.0, 0.0, 13.0], ["2026-10-23", "Bek-d Walk in", "Dairy Milk Chocolate", 24.0, 0.0, 0.0, 2.0, 0.0, 0.0, 21.0], ["2026-10-23", "Bek-d Walk in", "Dubai Viral Cookie", 112.0, 0.0, 0.0, 12.0, 0.0, 0.0, 99.0], ["2026-10-23", "Bek-d Walk in", "Dubai Viral Dough", 8726.0, 6760.0, 0.0, 4600.0, 0.0, 0.0, 10300.0], ["2026-10-23", "Bek-d Walk in", "Ferrero Rocher Chocolate", 25.0, 48.0, 0.0, 34.0, 0.0, 0.0, 59.0], ["2026-10-23", "Bek-d Walk in", "Ferrero Rocher Cookie", 61.0, 0.0, 0.0, 16.0, 0.0, 0.0, 61.0], ["2026-10-23", "Bek-d Walk in", "Gelato Belgian Chocolate", 4352.0, 0.0, 0.0, 1200.0, 0.0, 0.0, 2640.0], ["2026-10-23", "Bek-d Walk in", "Glass 12 oz With Lid", 117.0, 0.0, 0.0, 33.0, 2.0, 0.0, 75.0], ["2026-10-23", "Bek-d Walk in", "Glass 16 oz With Lid", 41.0, 100.0, 0.0, 88.0, 2.0, 0.0, 44.0], ["2026-10-23", "Bek-d Walk in", "Hazelnut Syrup", 0.0, 0.0, 0.0, 360.0, 30.0, 0.0, 0.0], ["2026-10-23", "Bek-d Walk in", "Hot Cup 8 oz With Lid", 54.0, 50.0, 0.0, 6.0, 0.0, 0.0, 95.0], ["2026-10-23", "Bek-d Walk in", "Ice", 0.0, 0.0, 0.0, 13050.0, 520.0, 0.0, 0.0], ["2026-10-23", "Bek-d Walk in", "Kinder Bueno Bomb Cookie", 141.0, 0.0, 0.0, 25.0, 0.0, 0.0, 108.0], ["2026-10-23", "Bek-d Walk in", "Kinder Bueno Chocolate (New)", 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5], ["2026-10-23", "Bek-d Walk in", "Kinder Bueno Dough", 15542.0, 13850.0, 0.0, 13000.0, 200.0, 0.0, 14645.0], ["2026-10-23", "Bek-d Walk in", "Kinder Bueno Spread", 4651.0, 2515.0, 0.0, 1590.0, 15.0, 0.0, 4516.0], ["2026-10-23", "Bek-d Walk in", "KitKat Chocolate 4 Finger (New)", 52.5, 0.0, 0.0, 54.0, 0.0, 0.0, 23.0], ["2026-10-23", "Bek-d Walk in", "Kunafa Khushri", 600.0, 500.0, 0.0, 710.0, 0.0, 0.0, 700.0], ["2026-10-23", "Bek-d Walk in", "Lindt Madness Cookie", 50.0, 0.0, 0.0, 5.0, 0.0, 0.0, 42.0], ["2026-10-23", "Bek-d Walk in", "Lotus Bisscoff Crumbs", 750.0, 500.0, 0.0, 470.0, 50.0, 0.0, 850.0], ["2026-10-23", "Bek-d Walk in", "Lotus Spread", 3067.0, 2580.0, 0.0, 1270.0, 90.0, 0.0, 3124.0], ["2026-10-23", "Bek-d Walk in", "Magnum", 4.0, 54.0, 0.0, 36.0, 0.0, 0.0, 17.0], ["2026-10-23", "Bek-d Walk in", "Milk Dayfresh", 2380.0, 14000.0, 0.0, 11420.0, 290.0, 0.0, 5967.0], ["2026-10-23", "Bek-d Walk in", "Milo Soft Serve", 69.0, 0.0, 0.0, 23.0, 0.0, 0.0, 23.0], ["2026-10-23", "Bek-d Walk in", "Mocha Powder", 2619.0, 0.0, 0.0, 270.0, 0.0, 0.0, 2181.0], ["2026-10-23", "Bek-d Walk in", "Nutella Lava Dough", 67705.0, 42080.0, 0.0, 42000.0, 400.0, 0.0, 62161.0], ["2026-10-23", "Bek-d Walk in", "Nutella Spread", 23811.0, 29080.0, 0.0, 21675.0, 465.0, 0.0, 18428.0], ["2026-10-23", "Bek-d Walk in", "OG Chunk Cookie", 148.0, 0.0, 0.0, 25.0, 1.0, 0.0, 124.0], ["2026-10-23", "Bek-d Walk in", "OG Nutella Bomb Cookie", 126.0, 90.0, 0.0, 67.0, 2.0, 0.0, 105.0], ["2026-10-23", "Bek-d Walk in", "Oreo Crumbs", 400.0, 0.0, 0.0, 0.0, 0.0, 0.0, 400.0], ["2026-10-23", "Bek-d Walk in", "Peach Tea Syrup", 2480.0, 0.0, 0.0, 45.0, 45.0, 0.0, 2386.0], ["2026-10-23", "Bek-d Walk in", "Pistachio Spread", 4651.0, 2700.0, 0.0, 1695.0, 0.0, 0.0, 4644.0], ["2026-10-23", "Bek-d Walk in", "Popcorn Syrup", 0.0, 0.0, 0.0, 22.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Walk in", "Raspberry Puree", 1000.0, 0.0, 0.0, 40.0, 0.0, 0.0, 975.0], ["2026-10-23", "Bek-d Walk in", "Raspberry Tea Syrup", 2375.0, 0.0, 0.0, 45.0, 0.0, 0.0, 2331.0], ["2026-10-23", "Bek-d Walk in", "Roasted Hazelnut Syrup", 1409.0, 1300.0, 0.0, 0.0, 0.0, 0.0, 2267.0], ["2026-10-23", "Bek-d Walk in", "Salted Caramel Syrup", 1707.0, 0.0, 0.0, 60.0, 0.0, 0.0, 1534.0], ["2026-10-23", "Bek-d Walk in", "Snicker Bomb Cookie", 76.0, 0.0, 0.0, 6.0, 0.0, 0.0, 68.0], ["2026-10-23", "Bek-d Walk in", "Spoon Large", 0.0, 2500.0, 0.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Walk in", "Sugar Syrup", 0.0, 0.0, 0.0, 10.0, 5.0, 0.0, 0.0], ["2026-10-23", "Bek-d Walk in", "Tea Bag \u2013 Tapal", 59.0, 0.0, 0.0, 2.0, 1.0, 0.0, 56.0], ["2026-10-23", "Bek-d Walk in", "Tiramisu Cake", 4.0, 28.0, 0.0, 25.0, 1.0, 0.0, 2.0], ["2026-10-23", "Bek-d Walk in", "Tiramisu Syrup", 1286.0, 1820.0, 0.0, 975.0, 25.0, 0.0, 1656.0], ["2026-10-23", "Bek-d Walk in", "Tissues", 0.0, 1200.0, 0.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Walk in", "Toffee Nut Syrup", 2241.0, 0.0, 0.0, 120.0, 0.0, 0.0, 2101.0], ["2026-10-23", "Bek-d Walk in", "Triple Chocolate Dough", 23075.0, 22160.0, 0.0, 13400.0, 200.0, 0.0, 28295.0], ["2026-10-23", "Bek-d Walk in", "Vanilla Icecream Scoop", 3060.0, 42000.0, 0.0, 33510.0, 695.0, 0.0, 7695.0], ["2026-10-23", "Bek-d Walk in", "Vanilla Syrup", 1577.0, 0.0, 0.0, 455.0, 5.0, 0.0, 1065.0], ["2026-10-23", "Bek-d Walk in", "Viral Milk Chocolate Cookie", 0.0, 135.0, 0.0, 109.0, 1.0, 0.0, 29.0], ["2026-10-23", "Bek-d Walk in", "Viral Triple Chocolate Cookie", 66.0, 90.0, 0.0, 128.0, 3.0, 0.0, 18.0], ["2026-10-23", "Bek-d Walk in", "Water", 11.0, 48.0, 0.0, 22.0, 2.0, 0.0, 33.0], ["2026-10-23", "Bek-d Walk in", "Whip Cream Charger (Mossa)", 6.0, 20.0, 0.0, 0.0, 0.0, 0.0, 22.0], ["2026-10-23", "Bek-d Walk in", "Whipped Cream", 0.0, 4000.0, 0.0, 0.0, 0.0, 0.0, 3000.0], ["2026-10-23", "Bek-d Walk in", "vanilla soft serve", 361.0, 380.0, 0.0, 545.0, 5.0, 0.0, 228.0], ["2026-10-23", "warehouse", "Brownie", 0.0, 0.0, 12.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Chimny Dough", 0.0, 0.0, 194.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Choco Bomb Cookie", 0.0, 0.0, 12.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Choco Chunk Cookie", 0.0, 0.0, 9.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Coffee Beans", 0.0, 0.0, 2000.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Croffle", 0.0, 0.0, 24.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Croissant", 0.0, 0.0, 54.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Dubai Viral Cookie", 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Dubai Viral Dough", 0.0, 0.0, 6760.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Ferrero Rocher Chocolate", 0.0, 0.0, 48.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Ferrero Rocher Cookie", 0.0, 0.0, 6.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Glass 16 oz With Lid", 0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Hot Cup 8 oz With Lid", 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Kinder Bueno Bomb Cookie", 0.0, 0.0, 6.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Kinder Bueno Dough", 0.0, 0.0, 16620.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Kinder Bueno Spread", 0.0, 0.0, 3845.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Kunafa Khushri", 0.0, 0.0, 500.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Lotus Bisscoff Crumbs", 0.0, 0.0, 500.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Lotus Spread", 0.0, 0.0, 3930.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Magnum", 0.0, 0.0, 54.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Milk Dayfresh", 0.0, 0.0, 14000.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Nutella Lava Dough", 0.0, 0.0, 47340.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Nutella Spread", 0.0, 0.0, 32020.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "OG Chunk Cookie", 0.0, 0.0, 6.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "OG Nutella Bomb Cookie", 0.0, 0.0, 99.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Pistachio Spread", 0.0, 0.0, 3970.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Roasted Hazelnut Syrup", 0.0, 0.0, 1300.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Spoon Large", 0.0, 0.0, 2500.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Tiramisu Cake", 0.0, 0.0, 28.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Tiramisu Syrup", 0.0, 0.0, 1820.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Tissues", 0.0, 0.0, 1200.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Triple Chocolate Dough", 0.0, 0.0, 24930.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Vanilla Icecream Scoop", 0.0, 0.0, 42000.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Viral Milk Chocolate Cookie", 0.0, 0.0, 135.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Viral Triple Chocolate Cookie", 0.0, 0.0, 90.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Water", 0.0, 0.0, 48.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Whip Cream Charger (Mossa)", 0.0, 0.0, 20.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "Whipped Cream", 0.0, 0.0, 4000.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "warehouse", "vanilla soft serve", 0.0, 0.0, 380.0, 0.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Brownie", 0.0, 0.0, 0.0, 0.75, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Chimny Dough", 0.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Choco Bomb Cookie", 0.0, 0.0, 0.0, 11.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Choco Chunk Cookie", 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Chocolate Toping Syrup", 0.0, 0.0, 0.0, 10.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Croffle", 0.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Croissant", 0.0, 0.0, 0.0, 3.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Dairy Milk Chocolate", 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Dubai Viral Cookie", 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Dubai Viral Dough", 0.0, 0.0, 0.0, 1000.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Ferrero Rocher Chocolate", 0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Kinder Bueno Bomb Cookie", 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Kinder Bueno Dough", 0.0, 0.0, 0.0, 1400.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Kinder Bueno Spread", 0.0, 0.0, 0.0, 215.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Lotus Bisscoff Crumbs", 0.0, 0.0, 0.0, 40.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Lotus Spread", 0.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Nutella Lava Dough", 0.0, 0.0, 0.0, 4200.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Nutella Spread", 0.0, 0.0, 0.0, 1590.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "OG Chunk Cookie", 0.0, 0.0, 0.0, 6.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "OG Nutella Bomb Cookie", 0.0, 0.0, 0.0, 29.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Pistachio Spread", 0.0, 0.0, 0.0, 85.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Snicker Bomb Cookie", 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "Triple Chocolate Dough", 0.0, 0.0, 0.0, 1400.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Bahadurabad", "vanilla soft serve", 0.0, 0.0, 0.0, 7.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Brownie", 0.0, 0.0, 0.0, 1.5, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Chimny Dough", 0.0, 0.0, 0.0, 10.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Choco Bomb Cookie", 0.0, 0.0, 0.0, 11.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Choco Chunk Cookie", 0.0, 0.0, 0.0, 3.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Chocolate Toping Syrup", 0.0, 0.0, 0.0, 20.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Coffee Beans", 0.0, 0.0, 0.0, 270.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Condensed Milk", 0.0, 0.0, 0.0, 240.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Croffle", 0.0, 0.0, 0.0, 3.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Croissant", 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Dubai Viral Cookie", 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Dubai Viral Dough", 0.0, 0.0, 0.0, 400.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Ferrero Rocher Chocolate", 0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Ferrero Rocher Cookie", 0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Glass 12 oz With Lid", 0.0, 0.0, 0.0, 9.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Glass 16 oz With Lid", 0.0, 0.0, 0.0, 6.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Ice", 0.0, 0.0, 0.0, 1680.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Kinder Bueno Bomb Cookie", 0.0, 0.0, 0.0, 3.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Kinder Bueno Dough", 0.0, 0.0, 0.0, 400.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Kinder Bueno Spread", 0.0, 0.0, 0.0, 105.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "KitKat Chocolate 4 Finger (New)", 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Kunafa Khushri", 0.0, 0.0, 0.0, 170.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Lindt Madness Cookie", 0.0, 0.0, 0.0, 3.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Lotus Bisscoff Crumbs", 0.0, 0.0, 0.0, 60.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Lotus Spread", 0.0, 0.0, 0.0, 180.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Magnum", 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Milk Dayfresh", 0.0, 0.0, 0.0, 1770.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Mocha Powder", 0.0, 0.0, 0.0, 120.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Nutella Lava Dough", 0.0, 0.0, 0.0, 4600.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Nutella Spread", 0.0, 0.0, 0.0, 2065.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "OG Chunk Cookie", 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "OG Nutella Bomb Cookie", 0.0, 0.0, 0.0, 14.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Pistachio Spread", 0.0, 0.0, 0.0, 300.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Salted Caramel Syrup", 0.0, 0.0, 0.0, 30.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Snicker Bomb Cookie", 0.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Triple Chocolate Dough", 0.0, 0.0, 0.0, 2200.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "Vanilla Icecream Scoop", 0.0, 0.0, 0.0, 1125.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d Online 2", "vanilla soft serve", 0.0, 0.0, 0.0, 34.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Brownie", 0.0, 0.0, 0.0, 4.5, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Caramel Syrup", 0.0, 0.0, 0.0, 30.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Chimny Dough", 0.0, 0.0, 0.0, 41.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Choco Bomb Cookie", 29.0, 12.0, 0.0, 4.0, 0.0, 0.0, 38.0], ["2026-10-23", "Bek-d SMCHS", "Choco Chunk Cookie", 22.0, 9.0, 0.0, 1.0, 0.0, 0.0, 30.0], ["2026-10-23", "Bek-d SMCHS", "Coffee Beans", 0.0, 0.0, 0.0, 36.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Dubai Viral Cookie", 10.0, 4.0, 0.0, 4.0, 0.0, 0.0, 10.0], ["2026-10-23", "Bek-d SMCHS", "Dubai Viral Dough", 3098.0, 0.0, 0.0, 800.0, 0.0, 0.0, 3268.0], ["2026-10-23", "Bek-d SMCHS", "Ferrero Rocher Chocolate", 0.0, 0.0, 0.0, 14.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Ferrero Rocher Cookie", 23.0, 6.0, 0.0, 6.0, 0.0, 0.0, 23.0], ["2026-10-23", "Bek-d SMCHS", "Gelato Belgian Chocolate", 0.0, 0.0, 0.0, 450.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Glass 16 oz With Lid", 0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Ice", 0.0, 0.0, 0.0, 200.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Kinder Bueno Bomb Cookie", 24.0, 6.0, 0.0, 12.0, 0.0, 0.0, 18.0], ["2026-10-23", "Bek-d SMCHS", "Kinder Bueno Dough", 1752.0, 2770.0, 0.0, 2000.0, 0.0, 0.0, 3420.0], ["2026-10-23", "Bek-d SMCHS", "Kinder Bueno Spread", 0.0, 1330.0, 0.0, 315.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "KitKat Chocolate 4 Finger (New)", 0.0, 0.0, 0.0, 12.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Kunafa Khushri", 0.0, 0.0, 0.0, 280.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Lindt Madness Cookie", 5.0, 0.0, 0.0, 4.0, 0.0, 0.0, 1.0], ["2026-10-23", "Bek-d SMCHS", "Lotus Bisscoff Crumbs", 0.0, 0.0, 0.0, 60.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Lotus Spread", 0.0, 1350.0, 0.0, 180.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Milk Dayfresh", 0.0, 0.0, 0.0, 140.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Nutella Lava Dough", 4655.0, 5260.0, 0.0, 7600.0, 0.0, 0.0, 2021.0], ["2026-10-23", "Bek-d SMCHS", "Nutella Spread", 0.0, 2940.0, 0.0, 4770.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "OG Chunk Cookie", 28.0, 6.0, 0.0, 4.0, 0.0, 0.0, 29.0], ["2026-10-23", "Bek-d SMCHS", "OG Nutella Bomb Cookie", 27.0, 9.0, 0.0, 19.0, 0.0, 0.0, 16.0], ["2026-10-23", "Bek-d SMCHS", "Pistachio Spread", 0.0, 1270.0, 0.0, 415.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Snicker Bomb Cookie", 18.0, 0.0, 0.0, 0.0, 0.0, 0.0, 18.0], ["2026-10-23", "Bek-d SMCHS", "Triple Chocolate Dough", 3940.0, 2770.0, 0.0, 4600.0, 0.0, 0.0, 1272.0], ["2026-10-23", "Bek-d SMCHS", "Vanilla Icecream Scoop", 0.0, 0.0, 0.0, 5700.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "Water", 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0], ["2026-10-23", "Bek-d SMCHS", "vanilla soft serve", 0.0, 0.0, 0.0, 55.0, 0.0, 0.0, 0.0]], "adj": [["2026-10-23", "Bahadurabad", "Snicker Bomb Cookie", "Sales", -13], ["2026-10-23", "Bahadurabad", "OG Chunk Cookie", "Physical", -9], ["2026-10-23", "Bahadurabad", "Ferrero Rocher Cookie", "Physical", -17], ["2026-10-23", "Bahadurabad", "Kinder Bueno Spread", "Transfer Out", 1164], ["2026-10-23", "Bahadurabad", "Nutella Spread", "Transfer Out", 1665], ["2026-10-23", "Bahadurabad", "Pistachio Spread", "Transfer Out", 852], ["2026-10-23", "Bahadurabad", "Lotus Spread", "Transfer Out", 1337]]};
+const LS='bekd_report_v1';
+let rows=BASE.rows.slice(), adj=BASE.adj.slice();
+try{const s=JSON.parse(localStorage.getItem(LS)||'null'); if(s&&s.rows){rows=s.rows;adj=s.adj;}}catch(e){}
+const save=()=>{IDX=null;try{localStorage.setItem(LS,JSON.stringify({rows,adj}));}catch(e){}};
+const CFG={bahadurabad:{title:'Bek-d Bahadurabad, Bek-d Online 2, Bek-d Walk in',stock:'Bek-d Walk in',sales:['Bek-d Walk in','Bek-d Online 2','Bek-d Bahadurabad'],key:'Bahadurabad'},
+           smchs:{title:'Bek-d Sindhi Muslim (SMCHS)',stock:'Bek-d SMCHS',sales:['Bek-d SMCHS'],key:'SMCHS'}};
+let tab='bahadurabad',filt='',date='';
+const $=s=>document.querySelector(s), nm=s=>String(s).trim().toLowerCase();
+const fmt=v=>{const n=Math.round(v*1000)/1000;return n.toLocaleString('en-US',{maximumFractionDigits:3});};
+const dates=()=>[...new Set(rows.map(r=>r[0]))].sort().reverse();
+const longD=d=>new Date(d+'T00:00:00').toLocaleDateString('en-GB',{weekday:'long',day:'2-digit',month:'short',year:'numeric'});
+const ALIAS={};for(const k in BASE.layout)for(const g of BASE.layout[k])for(const it of g.items)if(it.alts){const c=it.alts[0].trim().toLowerCase();ALIAS[it.name.trim().toLowerCase()]=c;for(const a of it.alts)ALIAS[a.trim().toLowerCase()]=c;}const ck=s=>{const n=String(s).trim().toLowerCase();return ALIAS[n]||n;};
+let IDX=null;
+function ensureIdx(){if(IDX)return;IDX=new Map();for(const r of rows){const k=r[0]+'|'+nm(r[1])+'|'+ck(r[2]);let a=IDX.get(k);if(!a){a=[0,0,0,0,0,0,0];IDX.set(k,a);}for(let c=3;c<=9;c++)a[c-3]+=r[c];}}
+function sum(d,branch,item,col){ensureIdx();const a=IDX.get(d+'|'+nm(branch)+'|'+ck(item));return a?a[col-3]:0;}
+function adjv(d,key,item,type){let t=0;const i=ck(item);for(const a of adj) if(a[0]===d&&a[1]===key&&ck(a[2])===i&&a[3]===type) t+=Number(a[4]);return t;}
+function calc(cfg,it,d){
+ const o=sum(d,cfg.stock,it,3),ti=sum(d,cfg.stock,it,4),to=sum(d,cfg.stock,it,5)+adjv(d,cfg.key,it,'Transfer Out');
+ const sales=cfg.sales.map(b=>sum(d,b,it,6)),ts=sales.reduce((a,b)=>a+b,0)+adjv(d,cfg.key,it,'Sales');
+ const v=sum(d,cfg.stock,it,7),dc=sum(d,cfg.stock,it,8),ph=sum(d,cfg.stock,it,9)+adjv(d,cfg.key,it,'Physical');
+ const sih=o+ti-to,ex=sih-ts-v-dc,df=ex-ph;
+ ensureIdx();const nd=!IDX.has(d+'|'+nm(cfg.stock)+'|'+ck(it));
+ return {o,ti,to,sih,sales,ts,v,dc,ph,ex,df,nd,st:nd?'No data':Math.abs(df)<1e-9?'Match':df<0?'Excess':'Short'};
+}
+function stat(df){return Math.abs(df)<1e-9?'Match':df<0?'Excess':'Short';}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+const UL=u=>u==='Gm'?'Kg':u, cvv=(u,v)=>u==='Gm'?v/1000:v;
+function gUnits(items){return [...new Set(items.map(i=>UL(i.unit)))];}
+function unitTxt(by){return Object.entries(by).filter(([u,v])=>Math.abs(v)>1e-9).map(([u,v])=>fmt(v)+' '+u).join(' · ')||'0';}
+function model(){
+ const cfg=CFG[tab];const hd=['S.no','Item Name','Unit','Opening','Transfer In','Transfer Out','Stock In Hand',...cfg.sales,'Total Sales','Made Void','Discard','Physical Count','Expected','Difference','Short / Excess'];
+ const groups=[],cnt={Short:0,Excess:0,Match:0,'No data':0};
+ for(const g of BASE.layout[tab]){let gdf=0;const gc={Short:0,Excess:0,Match:0,'No data':0};const items=[];
+  const by={};
+  g.items.forEach((it,i)=>{const c0=calc(cfg,it.name,date);gdf+=c0.df;cnt[c0.st]++;gc[c0.st]++;const u=it.unit,k=x=>cvv(u,x);
+   const c=Object.assign({},c0,{o:k(c0.o),ti:k(c0.ti),to:k(c0.to),sih:k(c0.sih),sales:c0.sales.map(k),ts:k(c0.ts),v:k(c0.v),dc:k(c0.dc),ph:k(c0.ph),ex:k(c0.ex),df:k(c0.df)});
+   by[UL(u)]=(by[UL(u)]||0)+c.df;items.push({n:i+1,name:it.name,unit:UL(u),c});});
+  const mixed=Object.keys(by).length>1;
+  groups.push({group:g.group,gdf,gc,items,by,mixed,gtxt:mixed?'':unitTxt(by)});}
+ const has=rows.some(r=>r[0]===date&&nm(r[1])===nm(cfg.stock));
+ return {cfg,hd,groups,cnt,has};
+}
+function donut(c){const tot=c.Short+c.Excess+c.Match||1,R=42,C=2*Math.PI*R;let off=0;
+ const seg=(n,col)=>{const l=C*n/tot;const s=`<circle cx="55" cy="55" r="${R}" fill="none" stroke="${col}" stroke-width="16" stroke-dasharray="${l} ${C-l}" stroke-dashoffset="${-off}" transform="rotate(-90 55 55)"/>`;off+=l;return s;};
+ return `<svg width="110" height="110" viewBox="0 0 110 110"><circle cx="55" cy="55" r="${R}" fill="none" stroke="#e5e9ef" stroke-width="16"/>${seg(c.Short,'#d64545')}${seg(c.Excess,'#e09a1a')}${seg(c.Match,'#1f9d63')}<text x="55" y="53" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="currentColor">${c.Short+c.Excess+c.Match}</text><text x="55" y="68" text-anchor="middle" font-size="9" fill="#64748b">items</text></svg>`;}
+
+let view='day',month='';
+const months=()=>[...new Set(dates().map(d=>d.slice(0,7)))].sort().reverse();
+const monthName=m=>new Date(m+'-01T00:00:00').toLocaleDateString('en-GB',{month:'long',year:'numeric'});
+const cf=v=>{const a=Math.abs(v);if(a>=1000)return (v<0?'-':'')+(a/1000).toFixed(a>=10000?0:1)+'k';return String(Math.round(v*10)/10);};
+function monthModel(){
+ const cfg=CFG[tab];const ym=month;const y=+ym.slice(0,4),mo=+ym.slice(5,7);const nDays=new Date(y,mo,0).getDate();
+ const ds=dates().filter(d=>d.startsWith(ym)).sort();
+ const groups=[],tot={Short:0,Excess:0,Match:0};const all=[];
+ for(const g of BASE.layout[tab]){const items=[];
+  g.items.forEach((it,i)=>{const per=Array(nDays+1).fill(null);let ts=0,te=0,dS=0,dE=0,dM=0;const kk=x=>cvv(it.unit,x);
+   for(const d of ds){const c=calc(cfg,it.name,d);if(c.nd)continue;const day=+d.slice(8);per[day]=kk(c.df);
+    if(c.st==='Short'){ts+=kk(c.df);dS++;}else if(c.st==='Excess'){te+=-kk(c.df);dE++;}else dM++;}
+   tot.Short+=dS;tot.Excess+=dE;tot.Match+=dM;
+   const row={n:i+1,name:it.name,unit:UL(it.unit),per,ts,te,net:ts-te,dS,dE,dM,days:dS+dE+dM,group:g.group};items.push(row);all.push(row);});
+  groups.push({group:g.group,items});}
+ return {cfg,ym,nDays,ds,groups,tot,all};
+}
+const nlp=v=>Math.abs(v)<1e-9?'':v>0?' Short':' Excess';
+const nl=v=>Math.abs(v)<1e-9?'':v>0?' <b style="color:#d64545">Short</b>':' <b style="color:#b3750a">Excess</b>';
+function gTot(g,nD){const s={ts:0,te:0,net:0,dS:0,dE:0,dM:0,per:Array(nD+1).fill(null),by:{}};
+ for(const it of g.items){s.ts+=it.ts;s.te+=it.te;s.dS+=it.dS;s.dE+=it.dE;s.dM+=it.dM;for(let d=1;d<=nD;d++)if(it.per[d]!==null)s.per[d]=(s.per[d]||0)+it.per[d];}
+ for(const it of g.items)s.by[it.unit]=(s.by[it.unit]||0)+it.ts-it.te;s.mixed=Object.keys(s.by).length>1;s.u=s.mixed?'':Object.keys(s.by)[0]||'';
+ if(s.mixed)s.per.fill(null);
+ s.net=s.ts-s.te;s.st=Math.abs(s.net)<1e-9?'Match':s.net>0?'Short':'Excess';return s;}
+function renderMonth(){
+ const ms=months();const sel=$('#month');
+ sel.replaceChildren(...ms.map(m=>{const o=document.createElement('option');o.value=m;o.textContent=monthName(m);return o;}));
+ if(!ms.includes(month))month=ms[0]||'';sel.value=month;
+ const q=nm($('#q').value);if(!month){$('#tbl').innerHTML='<tbody><tr><td class="l" style="padding:30px">Koi data nahi.</td></tr></tbody>';$('#tiles').innerHTML='';$('#cats').innerHTML='';return;}
+ const m=monthModel(),cfg=m.cfg;
+ $('#sub').textContent=cfg.title+'  ·  Monthly Grand Report  ·  '+monthName(month);$('#pSub').textContent=cfg.title+' - Monthly Grand Report';$('#pDate').textContent=monthName(month);
+ const dy=Array.from({length:m.nDays},(_,i)=>i+1);
+ let html='<thead><tr><th class="l">S.no</th><th class="l">Item Name</th><th class="l">Unit</th><th>Total Short</th><th>Total Excess</th><th>Net Diff</th>'+dy.map(d=>`<th class="dy">${d}</th>`).join('')+'</tr></thead><tbody>';
+ const nc=9+m.nDays;
+ for(const g of m.groups){let body='';
+  for(const it of g.items){if(q&&!nm(it.name).includes(q)&&!nm(g.group).includes(q))continue;
+   body+=`<tr><td class="l">${it.n}</td><td class="l">${esc(it.name)}</td><td class="l">${esc(it.unit)}</td><td class="d" style="color:var(--red)">${it.ts?fmt(it.ts):'-'}</td><td class="d" style="color:#b3750a">${it.te?fmt(it.te):'-'}</td><td class="d" style="white-space:nowrap">${it.days?fmt(it.net)+nl(it.net):'-'}</td>`+
+    dy.map(d=>{const v=it.per[d];if(v===null)return '<td class="dy n">·</td>';const c=Math.abs(v)<1e-9?'m':v>0?'s':'e';return `<td class="dy ${c}" title="${d} ${monthName(month)}: ${fmt(v)}">${c==='m'?'0':cf(v)}</td>`;}).join('')+'</tr>';}
+  if(body){const s=gTot(g,m.nDays),sc=s.st==='Short'?'var(--red)':s.st==='Excess'?'#b3750a':'var(--grn)';
+   const lab=s.mixed?'mixed units: '+esc(unitTxt(s.by)):`Net ${fmt(Math.abs(s.net))} ${s.u} ${s.st}`;
+   html+=`<tr class="g"><td class="l" colspan="3">${esc(g.group)} (${g.items.length} items) - <span style="color:${s.mixed?'var(--mut)':sc}">${lab}</span></td><td class="d" style="color:var(--red)">${s.mixed?'-':fmt(s.ts)}</td><td class="d" style="color:#b3750a">${s.mixed?'-':fmt(s.te)}</td><td class="d" style="color:${sc};white-space:nowrap">${s.mixed?'-':fmt(s.net)+nl(s.net)}</td>`+dy.map(d=>{const v=s.per[d];if(v===null)return '<td class="dy n">·</td>';const c=Math.abs(v)<1e-9?'m':v>0?'s':'e';return `<td class="dy ${c}">${c==='m'?'0':cf(v)}</td>`;}).join('')+'</tr>'+body;}}
+ html+='</tbody>';
+ $('#tbl').innerHTML=m.ds.length?html:'<tbody><tr><td class="l" style="padding:30px">Is mahine ka data maujood nahi.</td></tr></tbody>';
+ const tt=m.tot.Short+m.tot.Excess+m.tot.Match;
+ $('#tiles').innerHTML=`<div class="tile" style="--c:#1d4d80"><div class="k">Days with data</div><div class="v">${m.ds.length}</div><div class="d">of ${m.nDays} days in the month</div></div><div class="tile" style="--c:#d64545"><div class="k">Short</div><div class="v">${m.tot.Short}</div><div class="d">item-days short</div></div><div class="tile" style="--c:#e09a1a"><div class="k">Excess</div><div class="v">${m.tot.Excess}</div><div class="d">item-days excess</div></div><div class="tile" style="--c:#1f9d63"><div class="k">Match</div><div class="v">${m.tot.Match}</div><div class="d">item-days exactly right</div></div><div class="tile viz">${donut(m.tot)}<div class="leg"><div><i style="background:#d64545"></i>Short ${m.tot.Short}</div><div><i style="background:#e09a1a"></i>Excess ${m.tot.Excess}</div><div><i style="background:#1f9d63"></i>Match ${m.tot.Match}</div></div></div>`;
+ const top=(k,col,lab)=>{const a=m.all.filter(r=>r[k]>0).sort((x,y)=>y[k]-x[k]||(k==='dS'?y.ts-x.ts:y.te-x.te)).slice(0,6);const mx=a.length?a[0][k]:1;return `<div><h3>${lab}</h3>`+(a.length?a.map(r=>`<div class="rk" style="--c:${col}"><div class="nm" title="${esc(r.name)}">${esc(r.name)}</div><div class="bar"><b style="width:${r[k]*100/mx}%"></b></div><div class="note" style="text-align:right">${r[k]} days</div></div>`).join(''):'<div class="note">None</div>')+'</div>';};
+ $('#cats').classList.remove('hide');$('#cats').innerHTML='<div class="rank">'+top('dS','#d64545','Most often Short')+top('dE','#e09a1a','Most often Excess')+'</div>';
+ $('#ndn').classList.add('hide');
+ $('#t1').classList.toggle('on',tab==='bahadurabad');$('#t2').classList.toggle('on',tab==='smchs');
+ $('#items').innerHTML=BASE.layout[tab].flatMap(g=>g.items.map(i=>`<option value="${esc(i.name)}">`)).join('');
+}
+function setView(v){view=v;$('#v1').classList.toggle('on',v==='day');$('#v2').classList.toggle('on',v==='month');
+ $('#dayCtl').style.display=v==='day'?'contents':'none';$('#fltCtl').style.display=v==='day'?'contents':'none';$('#month').classList.toggle('hide',v!=='month');render();}
+$('#v1').onclick=()=>setView('day');$('#v2').onclick=()=>setView('month');
+$('#month').onchange=e=>{month=e.target.value;render();};
+function render(){
+ if(view==='month'){renderMonth();return;}
+ const ds=dates(); const sel=$('#date');
+ sel.replaceChildren(...ds.map(d=>{const o=document.createElement('option');o.value=d;o.textContent=longD(d);return o;}));
+ if(!ds.includes(date)) date=ds[0]||''; sel.value=date;
+ const q=nm($('#q').value), m=model(), cfg=m.cfg, nc=m.hd.length;
+ $('#sub').textContent=cfg.title+(date?'  ·  '+longD(date):'');
+ $('#pSub').textContent=cfg.title; $('#pDate').textContent=longD(date);
+ let html='<thead><tr>'+m.hd.map((h,i)=>`<th class="${i<3?'l':''}">${esc(h)}</th>`).join('')+'</tr></thead><tbody>';
+ for(const g of m.groups){let body='';
+  for(const it of g.items){const c=it.c; if(filt&&c.st!==filt) continue; if(q&&!nm(it.name).includes(q)&&!nm(g.group).includes(q)) continue;
+   body+=`<tr class="${c.st==='Short'?'rs':c.st==='Excess'?'re':c.nd?'nd':''}"><td class="l">${it.n}</td><td class="l">${esc(it.name)}</td><td class="l">${esc(it.unit)}</td><td>${fmt(c.o)}</td><td>${fmt(c.ti)}</td><td>${fmt(c.to)}</td><td>${fmt(c.sih)}</td>`+c.sales.map(x=>`<td>${fmt(x)}</td>`).join('')+`<td>${fmt(c.ts)}</td><td>${fmt(c.v)}</td><td>${fmt(c.dc)}</td><td>${fmt(c.ph)}</td><td>${fmt(c.ex)}</td><td class="d">${fmt(c.df)}</td><td style="text-align:center"><span class="pill ${c.st.replace(' ','')}">${c.st}</span></td></tr>`;}
+  if(body) html+=`<tr class="g"><td class="l" colspan="${nc-3}">${esc(g.group)}${g.mixed?' <span style="font-weight:600;color:var(--mut)">(mixed units: '+esc(unitTxt(g.by))+')</span>':''}</td><td>Grand Total</td><td style="white-space:nowrap">${g.mixed?'-':esc(g.gtxt)}</td><td style="text-align:center"><span class="pill ${stat(g.gdf)}">${stat(g.gdf)}</span></td></tr>`+body;}
+ html+='</tbody>';
+ $('#tbl').innerHTML=m.has?html:`<tbody><tr><td class="l" style="padding:30px">No data for ${esc(cfg.stock)} on this date. Excel connect karein ya "Paste data" se is din ka data daalein.</td></tr></tbody>`;
+ const cn=m.cnt,tot=cn.Short+cn.Excess+cn.Match;
+ $('#tiles').innerHTML=m.has?`<div class="tile" style="--c:#d64545"><div class="k">Short</div><div class="v">${cn.Short}</div><div class="d">items missing from stock</div></div><div class="tile" style="--c:#e09a1a"><div class="k">Excess</div><div class="v">${cn.Excess}</div><div class="d">items more than expected</div></div><div class="tile" style="--c:#1f9d63"><div class="k">Match</div><div class="v">${cn.Match}</div><div class="d">items exactly right</div></div><div class="tile" style="--c:#1d4d80"><div class="k">Items checked</div><div class="v">${tot}</div><div class="d">${tot?Math.round(cn.Match*100/tot):0}% matched</div></div><div class="tile viz">${donut(cn)}<div class="leg"><div><i style="background:#d64545"></i>Short ${cn.Short}</div><div><i style="background:#e09a1a"></i>Excess ${cn.Excess}</div><div><i style="background:#1f9d63"></i>Match ${cn.Match}</div></div></div>`:'';
+ $('#cats').classList.toggle('hide',!m.has);
+ const nn=cn['No data'];$('#ndn').classList.toggle('hide',!(m.has&&nn));$('#ndn').textContent=nn?'Note: '+nn+' items ka is date par Excel mein koi data nahi mila (grey "No data"), is liye wo Short/Excess/Match mein nahi ginay gaye.':'';
+ $('#cats').innerHTML=m.has?'<h3>Status by category</h3><div class="cats">'+m.groups.map(g=>{const t=g.items.length-g.gc['No data']||1;return `<div class="cat"><div class="nm" title="${esc(g.group)}">${esc(g.group)}</div><div class="bar"><b style="width:${g.gc.Short*100/t}%;background:#d64545"></b><b style="width:${g.gc.Excess*100/t}%;background:#e09a1a"></b><b style="width:${g.gc.Match*100/t}%;background:#1f9d63"></b></div><div class="note" style="text-align:right">${t}</div></div>`;}).join('')+'</div>':'';
+ const names=BASE.layout[tab].flatMap(g=>g.items.map(i=>i.name)); $('#items').innerHTML=names.map(n=>`<option value="${esc(n)}">`).join('');
+ const al=adj.map((a,i)=>[a,i]).filter(([a])=>a[0]===date&&a[1]===cfg.key);
+ $('#aList').innerHTML=al.length?'<table><thead><tr><th class="l">Item</th><th class="l">Type</th><th>Qty</th><th></th></tr></thead><tbody>'+al.map(([a,i])=>`<tr><td class="l">${esc(a[2])}</td><td class="l">${esc(a[3])}</td><td>${fmt(Number(a[4]))}</td><td><button class="sb" data-del="${i}">Delete</button></td></tr>`).join('')+'</tbody></table>':'<div class="note">No adjustments for this date.</div>';
+ $('#t1').classList.toggle('on',tab==='bahadurabad');$('#t2').classList.toggle('on',tab==='smchs');
+}
+// ---------- direct PDF (no library): A4 landscape, Helvetica
+const HW=[278,278,355,556,556,889,667,191,333,333,389,584,278,333,278,278,556,556,556,556,556,556,556,556,556,556,278,278,584,584,584,556,1015,667,667,722,722,667,611,778,722,278,500,667,556,833,722,778,667,778,722,667,611,722,667,944,667,667,611,278,278,278,469,556,333,556,556,500,556,556,278,556,556,222,222,500,222,833,556,556,556,556,333,500,278,556,500,722,500,500,500,334,260,334,584];
+const tw=(s,sz,b)=>{let w=0;for(const ch of s){const c=ch.charCodeAt(0);w+=(c>=32&&c<=126?HW[c-32]:556);}return w*sz/1000*(b?1.07:1);};
+const pdfS=s=>String(s).replace(/[^\x20-\x7e]/g,m=>m==='−'||m==='–'?'-':'?').replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');
+
+function pdfSummary(P,tiles,seg,extra){ // P: {rect,text,tw,fit,M,W}; draws summary block, returns height used
+ const {rect,text,tw,M,W}=P;let y=P.y;const n=tiles.length,gap=8,bw=(W-2*M-gap*(n-1))/n;
+ tiles.forEach((t,i)=>{const x=M+i*(bw+gap);rect(x,y,bw,38,'#f3f6fa');rect(x,y,3,38,t.c);text(t.k.toUpperCase(),x+9,y+11,6.5,'#5b6b7d',true);text(String(t.v),x+9,y+28,17,t.c,true);if(t.d)text(t.d,x+9+tw(String(t.v),17,true)+6,y+28,6.5,'#5b6b7d');});
+ y+=46;const tot=seg.reduce((a,s)=>a+s.v,0)||1;let x=M;const bwid=W-2*M;
+ seg.forEach(s=>{const w=bwid*s.v/tot;if(w>0){rect(x,y,w,7,s.c);x+=w;}});
+ y+=15;let lx=M;seg.forEach(s=>{rect(lx,y-6,6,6,s.c);const l=s.l+' '+s.v+(tot?' ('+Math.round(s.v*100/tot)+'%)':'');text(l,lx+9,y,7,'#16202b',true);lx+=9+tw(l,7,true)+16;});
+ y+=8;
+ if(extra)y=extra(y);
+ return y-P.y;}
+function makePDF(m){
+ const W=842,H=595,M=22,cfg=m.cfg;const nS=cfg.sales.length;
+ const base=[20,158,26,40,40,40,44,...Array(nS).fill(40),44,36,36,44,44,44,44];const sc=(W-2*M)/base.reduce((a,b)=>a+b,0);const cw=base.map(x=>x*sc);
+ const cx=[];let x=M;for(const w of cw){cx.push(x);x+=w;}
+ const pages=[];let cur=null,y=0;
+ const rgb=h=>[parseInt(h.slice(1,3),16)/255,parseInt(h.slice(3,5),16)/255,parseInt(h.slice(5,7),16)/255].map(v=>v.toFixed(3)).join(' ');
+ const rect=(x0,y0,w,h,col)=>cur.push(`${rgb(col)} rg ${x0.toFixed(2)} ${(H-y0-h).toFixed(2)} ${w.toFixed(2)} ${h.toFixed(2)} re f`);
+ const line=(x0,y0,x1,col)=>cur.push(`${rgb(col)} RG 0.4 w ${x0.toFixed(2)} ${(H-y0).toFixed(2)} m ${x1.toFixed(2)} ${(H-y0).toFixed(2)} l S`);
+ const text=(s,x0,y0,sz,col,bold)=>cur.push(`BT /${bold?'F2':'F1'} ${sz} Tf ${rgb(col)} rg ${x0.toFixed(2)} ${(H-y0).toFixed(2)} Td (${pdfS(s)}) Tj ET`);
+ const fit=(s,w,sz,b)=>{s=String(s);if(tw(s,sz,b)<=w)return s;while(s.length>1&&tw(s+'..',sz,b)>w)s=s.slice(0,-1);return s+'..';};
+ const cell=(i,s,y0,sz,col,bold,al)=>{s=fit(s,cw[i]-4,sz,bold);const w=tw(s,sz,bold);const x0=al==='r'?cx[i]+cw[i]-2-w:al==='c'?cx[i]+(cw[i]-w)/2:cx[i]+2;text(s,x0,y0,sz,col,bold);};
+ const newPage=()=>{cur=[];pages.push(cur);
+  text('bekd - Closing Stock Report',M,M+14,16,'#12355b',true);text(cfg.title,M,M+28,9,'#444444');
+  const ds=longD(date);const dw=tw(ds,10,true);text(ds,W-M-dw,M+14,10,'#12355b',true);
+  line(M,M+34,W-M,'#12355b');y=M+40;
+  if(pages.length===1){const cn=m.cnt,tt=cn.Short+cn.Excess+cn.Match;
+   y+=4+pdfSummary({rect,text,tw,M,W,y},[{k:'Short',v:cn.Short,c:'#d64545',d:'items missing'},{k:'Excess',v:cn.Excess,c:'#e09a1a',d:'items more than expected'},{k:'Match',v:cn.Match,c:'#1f9d63',d:'items exactly right'},{k:'Items checked',v:tt,c:'#1d4d80',d:(tt?Math.round(cn.Match*100/tt):0)+'% matched'}],
+    [{l:'Short',v:cn.Short,c:'#d64545'},{l:'Excess',v:cn.Excess,c:'#e09a1a'},{l:'Match',v:cn.Match,c:'#1f9d63'}],
+    yy=>{text('STATUS BY CATEGORY',M,yy+8,7,'#12355b',true);yy+=12;const gs=m.groups.filter(g=>g.gc.Short+g.gc.Excess+g.gc.Match>0);const colW=(W-2*M)/3;
+     gs.forEach((g,i)=>{const cx0=M+(i%3)*colW,cy=yy+Math.floor(i/3)*11;const nmx=fit(g.group,70,6.8,false);text(nmx,cx0,cy+6,6.8,'#16202b');
+      const bx=cx0+74,bwd=colW-100,tt2=g.gc.Short+g.gc.Excess+g.gc.Match;let xx=bx;[['Short','#d64545'],['Excess','#e09a1a'],['Match','#1f9d63']].forEach(([k,c])=>{const w=bwd*g.gc[k]/tt2;if(w>0){rect(xx,cy,w,6.5,c);xx+=w;}});text(String(tt2),bx+bwd+4,cy+6,6.8,'#5b6b7d');});
+     return yy+Math.ceil(gs.length/3)*11+6;}
+   );}
+  rect(M,y,W-2*M,24,'#12355b');
+  m.hd.forEach((h0,i)=>{const h=h0.replace('Bek-d ','');const words=h.split(' ');const l1=words.length>1?words.slice(0,Math.ceil(words.length/2)).join(' '):h;const l2=words.length>1?words.slice(Math.ceil(words.length/2)).join(' '):'';const al=i<3?'l':(i===m.hd.length-1?'c':'r');
+   if(l2){cell(i,l1,y+9,6.5,'#ffffff',true,al);cell(i,l2,y+18,6.5,'#ffffff',true,al);}else cell(i,l1,y+15,6.5,'#ffffff',true,al);});
+  y+=24;};
+ newPage();const RH=12.4;
+ const need=(h)=>{if(y+h>H-M-14){newPage();}};
+ const colr={Short:'#d64545',Excess:'#b3750a',Match:'#1f9d63','No data':'#8a95a1'},tint={Short:'#fdecec',Excess:'#fff4de',Match:'#ffffff','No data':'#ffffff'};
+ for(const g of m.groups){need(RH*3);rect(M,y,W-2*M,RH,'#e9eff7');text(g.group+(g.mixed?' (mixed units: '+unitTxt(g.by)+')':''),M+3,y+8.8,7.5,'#12355b',true);
+  const st=stat(g.gdf);cell(m.hd.length-1,st,y+8.8,7,colr[st],true,'c');cell(m.hd.length-2,g.mixed?'-':g.gtxt,y+8.8,7.5,'#12355b',true,'r');cell(m.hd.length-3,'Grand Total',y+8.8,7,'#12355b',true,'r');y+=RH;
+  for(const it of g.items){need(RH);const c=it.c,v=[it.n,it.name,it.unit,fmt(c.o),fmt(c.ti),fmt(c.to),fmt(c.sih),...c.sales.map(fmt),fmt(c.ts),fmt(c.v),fmt(c.dc),fmt(c.ph),fmt(c.ex),fmt(c.df),c.st];
+   const di=v.length-2;rect(cx[di],y,cw[di],RH,tint[c.st]);
+   v.forEach((s,i)=>{const al=i<3?'l':(i===v.length-1?'c':'r');cell(i,s,y+8.8,7.2,i===v.length-1?colr[c.st]:i===di?colr[c.st]:'#16202b',i>=di,al);});
+   line(M,y+RH,W-M,'#e3e7ec');y+=RH;}}
+ need(60);y+=34;line(M+10,y,M+200,'#000000');line(W-M-200,y,W-M-10,'#000000');
+ text('Rameez Ahmed',M+60,y+10,8.5,'#000000',true);text('Head of Inventory and Audit',M+40,y+20,7.5,'#000000');
+ text('Branch Manager',W-M-130,y+10,8.5,'#000000',true);
+ pages.forEach((p,i)=>{cur=p;const s=`Page ${i+1} of ${pages.length}`;text(s,W-M-tw(s,7)-0,H-M+4,7,'#666666');text('Generated '+new Date().toLocaleString('en-GB'),M,H-M+4,7,'#666666');});
+ const objs=[];const add=s=>{objs.push(s);return objs.length;};
+ add('<< /Type /Catalog /Pages 2 0 R >>');add('');const f1=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>'),f2=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>');
+ const kids=[];for(const p of pages){const st=p.join('\n');const ci=add(`<< /Length ${st.length} >>\nstream\n${st}\nendstream`);kids.push(add(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${W} ${H}] /Resources << /Font << /F1 ${f1} 0 R /F2 ${f2} 0 R >> >> /Contents ${ci} 0 R >>`));}
+ objs[1]=`<< /Type /Pages /Kids [${kids.map(k=>k+' 0 R').join(' ')}] /Count ${kids.length} >>`;
+ let out='%PDF-1.4\n';const offs=[];objs.forEach((o,i)=>{offs.push(out.length);out+=`${i+1} 0 obj\n${o}\nendobj\n`;});
+ const xr=out.length;out+=`xref\n0 ${objs.length+1}\n0000000000 65535 f \n`+offs.map(o=>String(o).padStart(10,'0')+' 00000 n \n').join('')+`trailer\n<< /Size ${objs.length+1} /Root 1 0 R >>\nstartxref\n${xr}\n%%EOF`;
+ const u8=new Uint8Array(out.length);for(let i=0;i<out.length;i++)u8[i]=out.charCodeAt(i)&255;return u8;
+}
+
+function makeMonthPDF(m){
+ const W=842,H=595,M=22,cfg=m.cfg,nD=m.nDays;
+ const fixed=[16,128,22,38,38,52];const cfp=v=>{const a=Math.abs(v);return a>=1000?(v<0?'-':'')+Math.round(a/1000)+'k':String(Math.round(v*10)/10);};const dayW=(W-2*M-fixed.reduce((a,b)=>a+b,0))/nD;
+ const cw=[...fixed.map(x=>x),...Array(nD).fill(dayW)];const cx=[];let x=M;for(const w of cw){cx.push(x);x+=w;}
+ const pages=[];let cur=null,y=0;
+ const rgb=h=>[parseInt(h.slice(1,3),16)/255,parseInt(h.slice(3,5),16)/255,parseInt(h.slice(5,7),16)/255].map(v=>v.toFixed(3)).join(' ');
+ const rect=(x0,y0,w,h,col)=>cur.push(`${rgb(col)} rg ${x0.toFixed(2)} ${(H-y0-h).toFixed(2)} ${w.toFixed(2)} ${h.toFixed(2)} re f`);
+ const line=(x0,y0,x1,col)=>cur.push(`${rgb(col)} RG 0.4 w ${x0.toFixed(2)} ${(H-y0).toFixed(2)} m ${x1.toFixed(2)} ${(H-y0).toFixed(2)} l S`);
+ const text=(s,x0,y0,sz,col,bold)=>cur.push(`BT /${bold?'F2':'F1'} ${sz} Tf ${rgb(col)} rg ${x0.toFixed(2)} ${(H-y0).toFixed(2)} Td (${pdfS(s)}) Tj ET`);
+ const fit=(s,w,sz,b)=>{s=String(s);if(tw(s,sz,b)<=w)return s;while(s.length>1&&tw(s+'..',sz,b)>w)s=s.slice(0,-1);return s+'..';};
+ const cell=(i,s,y0,sz,col,bold,al)=>{s=fit(s,cw[i]-2,sz,bold);const w=tw(s,sz,bold);const x0=al==='r'?cx[i]+cw[i]-1-w:al==='c'?cx[i]+(cw[i]-w)/2:cx[i]+2;text(s,x0,y0,sz,col,bold);};
+ const hd=['S.no','Item Name','Unit','Total Short','Total Excess','Net Diff',...Array.from({length:nD},(_,i)=>String(i+1))];
+ const newPage=()=>{cur=[];pages.push(cur);
+  text('bekd - Monthly Grand Report',M,M+14,16,'#12355b',true);text(cfg.title,M,M+28,9,'#444444');
+  const ds=monthName(m.ym);text(ds,W-M-tw(ds,10,true),M+14,10,'#12355b',true);
+  line(M,M+34,W-M,'#12355b');y=M+40;
+  if(pages.length===1){const tt=m.tot;
+   y+=4+pdfSummary({rect,text,tw,M,W,y},[{k:'Days with data',v:m.ds.length,c:'#1d4d80',d:'of '+nD+' days'},{k:'Short',v:tt.Short,c:'#d64545',d:'item-days'},{k:'Excess',v:tt.Excess,c:'#e09a1a',d:'item-days'},{k:'Match',v:tt.Match,c:'#1f9d63',d:'item-days'}],
+    [{l:'Short',v:tt.Short,c:'#d64545'},{l:'Excess',v:tt.Excess,c:'#e09a1a'},{l:'Match',v:tt.Match,c:'#1f9d63'}],
+    yy=>{const top=(k,lab,c,x0)=>{text(lab,x0,yy+8,7,'#12355b',true);m.all.filter(r=>r[k]>0).sort((a,b)=>b[k]-a[k]).slice(0,5).forEach((r,i)=>{text(fit(r.name,150,6.8,false),x0,yy+19+i*9,6.8,'#16202b');text(r[k]+' days',x0+160,yy+19+i*9,6.8,c,true);});};
+     top('dS','MOST OFTEN SHORT','#d64545',M);top('dE','MOST OFTEN EXCESS','#b3750a',M+(W-2*M)/2);return yy+68;}
+   );}
+  rect(M,y,W-2*M,16,'#12355b');
+  hd.forEach((h,i)=>cell(i,h,y+11,6.5,'#ffffff',true,i<3?'l':'c'));y+=16;};
+ newPage();const RH=11.6;const need=h=>{if(y+h>H-M-14)newPage();};
+ for(const g of m.groups){const its=g.items;if(!its.length)continue;need(RH*3);rect(M,y,W-2*M,RH,'#e9eff7');const s=gTot(g,nD),sc=s.st==='Short'?'#d64545':s.st==='Excess'?'#b3750a':'#1f9d63';
+  text(g.group+' ('+its.length+' items) - ',M+3,y+8.4,7.5,'#12355b',true);text(s.mixed?'mixed units: '+unitTxt(s.by):'Net '+fmt(Math.abs(s.net))+' '+s.u+' '+s.st,M+3+tw(g.group+' ('+its.length+' items) - ',7.5,true),y+8.4,7.5,sc,true);
+  (s.mixed?['-','-','-']:[fmt(s.ts),fmt(s.te),fmt(s.net)+nlp(s.net)]).forEach((v,i)=>cell(3+i,String(v),y+8.4,7,i===0?'#d64545':i===1?'#b3750a':i===2?sc:'#12355b',true,'r'));
+  for(let d=1;d<=nD;d++){const v=s.per[d];if(v===null)continue;const z=Math.abs(v)<1e-9;cell(5+d,z?'0':cfp(v),y+8.4,5.6,z?'#1f9d63':v>0?'#d64545':'#b3750a',true,'c');}
+  y+=RH;
+  for(const it of its){need(RH);
+   [it.n,it.name,it.unit,it.ts?fmt(it.ts):'-',it.te?fmt(it.te):'-',it.days?fmt(it.net)+nlp(it.net):'-'].forEach((s,i)=>cell(i,String(s),y+8.4,7,i===3&&it.ts?'#d64545':i===4&&it.te?'#b3750a':'#16202b',i>=3&&i<=5,i<3?'l':'r'));
+   for(let d=1;d<=nD;d++){const v=it.per[d],i=5+d;if(v===null){cell(i,'.',y+8.4,6.5,'#b9c1cb',false,'c');continue;}
+    const z=Math.abs(v)<1e-9;if(!z)rect(cx[i],y,cw[i],RH,v>0?'#fdecec':'#fff4de');cell(i,z?'0':cfp(v),y+8.4,5.6,z?'#1f9d63':v>0?'#d64545':'#b3750a',!z,'c');}
+   line(M,y+RH,W-M,'#e3e7ec');y+=RH;}}
+ need(30);y+=10;text('Day columns show Difference (Expected - Physical): red = Short, amber = Excess, 0 = Match, dot = no data.',M,y,7,'#666666');
+ pages.forEach((p,i)=>{cur=p;const s=`Page ${i+1} of ${pages.length}`;text(s,W-M-tw(s,7),H-M+4,7,'#666666');text('Generated '+new Date().toLocaleString('en-GB'),M,H-M+4,7,'#666666');});
+ return buildPDF(pages,W,H);
+}
+function buildPDF(pages,W,H){
+ const objs=[];const add=s=>{objs.push(s);return objs.length;};
+ add('<< /Type /Catalog /Pages 2 0 R >>');add('');const f1=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>'),f2=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>');
+ const kids=[];for(const p of pages){const st=p.join('\n');const ci=add(`<< /Length ${st.length} >>\nstream\n${st}\nendstream`);kids.push(add(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${W} ${H}] /Resources << /Font << /F1 ${f1} 0 R /F2 ${f2} 0 R >> >> /Contents ${ci} 0 R >>`));}
+ objs[1]=`<< /Type /Pages /Kids [${kids.map(k=>k+' 0 R').join(' ')}] /Count ${kids.length} >>`;
+ let out='%PDF-1.4\n';const offs=[];objs.forEach((o,i)=>{offs.push(out.length);out+=`${i+1} 0 obj\n${o}\nendobj\n`;});
+ const xr=out.length;out+=`xref\n0 ${objs.length+1}\n0000000000 65535 f \n`+offs.map(o=>String(o).padStart(10,'0')+' 00000 n \n').join('')+`trailer\n<< /Size ${objs.length+1} /Root 1 0 R >>\nstartxref\n${xr}\n%%EOF`;
+ const u8=new Uint8Array(out.length);for(let i=0;i<out.length;i++)u8[i]=out.charCodeAt(i)&255;return u8;
+}
+async function savePdf(blob,name){
+ if(window.showSaveFilePicker){
+  try{const h=await showSaveFilePicker({suggestedName:name,types:[{description:'PDF file',accept:{'application/pdf':['.pdf']}}]});const w=await h.createWritable();await w.write(blob);await w.close();return;}
+  catch(e){if(e&&e.name==='AbortError')return;}
+ }
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);}
+$('#pdf').onclick=()=>{
+ const br=(tab==='smchs'?'SMCHS':'Bahadurabad');
+ if(view==='month'){if(!month){alert('Koi data nahi.');return;}const mm=monthModel();savePdf(new Blob([makeMonthPDF(mm)],{type:'application/pdf'}),'Monthly_Grand_Report_'+br+'_'+month+'.pdf');return;}
+ const m=model();if(!m.has){alert('Is date ka data maujood nahi hai.');return;}
+ savePdf(new Blob([makePDF(m)],{type:'application/pdf'}),'Closing_Report_'+br+'_'+date+'.pdf');};
+$('#date').onchange=e=>{date=e.target.value;render();};
+$('#prev').onclick=()=>{const d=dates(),i=d.indexOf(date);if(i<d.length-1){date=d[i+1];render();}};
+$('#next').onclick=()=>{const d=dates(),i=d.indexOf(date);if(i>0){date=d[i-1];render();}};
+$('#q').oninput=render;
+document.querySelectorAll('.f').forEach(b=>b.onclick=()=>{filt=b.dataset.f;document.querySelectorAll('.f').forEach(x=>x.classList.toggle('on',x===b));render();});
+$('#t1').onclick=()=>{tab='bahadurabad';$('#t1').classList.add('on');$('#t2').classList.remove('on');render();};
+$('#t2').onclick=()=>{tab='smchs';$('#t2').classList.add('on');$('#t1').classList.remove('on');render();};
+$('#prn').onclick=()=>window.print();
+$('#imp').onclick=()=>$('#impBox').classList.toggle('hide');
+$('#adjb').onclick=()=>$('#adjBox').classList.toggle('hide');
+const MON={jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11};
+function pd(s){s=String(s).trim();let m;
+ if(m=s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))return iso(+m[1],+m[2]-1,+m[3]);
+ if(m=s.match(/^(\d{1,2})[-\/ ]([A-Za-z]{3})[a-z]*[-\/ ,]*(\d{2,4})/)){let y=+m[3];if(y<100)y+=2000;return iso(y,MON[m[2].toLowerCase()],+m[1]);}
+ if(m=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/)){let a=+m[1],b=+m[2],y=+m[3];if(y<100)y+=2000;return b>12?iso(y,a-1,b):iso(y,b-1,a);}
+ return null;}
+const iso=(y,m,d)=>y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+$('#add').onclick=()=>{const arr=$('#paste').value.split(/\r?\n/).map(l=>l.split('\t'));const nw=parseRows(arr);
+ if(!nw.length){$('#msg').textContent='Koi row nahi mili. Report Data copy karke paste karein (header ke saath behtar hai).';return;}
+ const nd=new Set(nw.map(r=>r[0]));rows=rows.filter(r=>!nd.has(r[0])).concat(nw);fixOpenings(rows);save();
+ date=[...nd].sort().reverse()[0];$('#msg').textContent=nw.length+' rows added for '+[...nd].sort().join(', ');$('#paste').value='';render();};
+$('#reset').onclick=()=>{if(confirm('Original data wapas karein? Added days hat jayenge.')){rows=BASE.rows.slice();adj=BASE.adj.slice();save();date='';render();}};
+$('#aAdd').onclick=()=>{const it=$('#aItem').value.trim(),q=parseFloat($('#aQty').value);if(!it||isNaN(q))return;adj.push([date,CFG[tab].key,it,$('#aType').value,q]);save();$('#aItem').value='';$('#aQty').value='';render();};
+$('#aList').onclick=e=>{const i=e.target.dataset.del;if(i!==undefined){adj.splice(+i,1);save();render();}};
+
+// ---------- Excel connection (reads .xlsx directly in the browser)
+async function unzip(buf){const dv=new DataView(buf),u8=new Uint8Array(buf);let e=u8.length-22;while(e>=0&&dv.getUint32(e,true)!==0x06054b50)e--;
+ if(e<0)throw new Error('Not an xlsx file');const n=dv.getUint16(e+10,true);let p=dv.getUint32(e+16,true);const files={};
+ for(let i=0;i<n;i++){const method=dv.getUint16(p+10,true),cs=dv.getUint32(p+20,true),nl=dv.getUint16(p+28,true),el=dv.getUint16(p+30,true),cl=dv.getUint16(p+32,true),lo=dv.getUint32(p+42,true);
+  files[new TextDecoder().decode(u8.subarray(p+46,p+46+nl))]={method,cs,lo};p+=46+nl+el+cl;}
+ return async name=>{const f=files[name];if(!f)return null;const ln=dv.getUint16(f.lo+26,true),le=dv.getUint16(f.lo+28,true);const s=f.lo+30+ln+le;const data=u8.subarray(s,s+f.cs);
+  if(f.method===0)return new TextDecoder().decode(data);return await new Response(new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text();};}
+const xml=s=>new DOMParser().parseFromString(s,'application/xml');
+const colIdx=r=>{let n=0;for(const ch of r.replace(/\d/g,''))n=n*26+ch.charCodeAt(0)-64;return n-1;};
+async function readSheets(buf,wanted){
+ const get=await unzip(buf);const wb=xml(await get('xl/workbook.xml')),rel=xml(await get('xl/_rels/workbook.xml.rels'));
+ const ss=[];const sx=await get('xl/sharedStrings.xml');if(sx)xml(sx).querySelectorAll('si').forEach(si=>ss.push([...si.querySelectorAll('t')].map(t=>t.textContent).join('')));
+ const targets={};rel.querySelectorAll('Relationship').forEach(r=>targets[r.getAttribute('Id')]=r.getAttribute('Target'));
+ const out={};
+ for(const s of wb.querySelectorAll('sheet')){const name=s.getAttribute('name');if(wanted&&!wanted.includes(name))continue;
+  let tg=targets[s.getAttribute('r:id')]||targets[[...s.attributes].find(a=>a.name.endsWith(':id')||a.name==='r:id')?.value];tg=tg.replace(/^\//,'');if(!tg.startsWith('xl/'))tg='xl/'+tg;
+  const sh=xml(await get(tg));const rows=[];
+  sh.querySelectorAll('row').forEach(r=>{const arr=[];r.querySelectorAll('c').forEach(c=>{const t=c.getAttribute('t'),v=c.querySelector('v');let val=null;
+    if(t==='s'&&v)val=ss[+v.textContent];else if(t==='inlineStr')val=[...c.querySelectorAll('t')].map(x=>x.textContent).join('');else if(t==='str'||t==='e')val=v?v.textContent:null;else if(v&&v.textContent!=='')val=parseFloat(v.textContent);
+    arr[colIdx(c.getAttribute('r'))]=val;});rows[+r.getAttribute('r')-1]=arr;});
+  out[name]=rows;}
+ return out;}
+const serial=v=>{const d=new Date(Math.round((v-25569)*86400000));return d.toISOString().slice(0,10);};
+const dOf=v=>typeof v==='number'?serial(v):(v?pd(v):null);
+const NK=s=>String(s==null?'':s).toLowerCase().replace(/[^a-z]/g,'');
+const COLS={date:['date'],branch:['branch'],item:['itemname'],open:['opening'],trin:['trasferinn','transferinn','transferin'],trout:['trasferout','transferout'],sales:['sales'],void:['madevoid','void'],disc:['discard'],phys:['physicalcount','physical']};
+function headerMap(cells){const m={};const names=cells.map(NK);for(const k in COLS){const i=names.findIndex(n=>COLS[k].includes(n));if(i<0)return null;m[k]=i;}return m;}
+function parseRows(arrs,isText){ // arrs: array of cell arrays
+ let map=null;const out=[];const f=x=>typeof x==='number'?x:(parseFloat(String(x).replace(/,/g,''))||0);
+ for(const c of arrs){if(!c)continue;const hm=headerMap(c);if(hm){map=hm;continue;}
+  const M=map||{date:1,branch:2,item:4,open:6,trin:10,trout:11,sales:12,void:13,disc:14,phys:16};
+  const d=dOf(c[M.date]);if(!d||!c[M.branch]||!c[M.item])continue;
+  out.push([d,String(c[M.branch]).trim(),String(c[M.item]).trim(),f(c[M.open]),f(c[M.trin]),f(c[M.trout]),f(c[M.sales]),f(c[M.void]),f(c[M.disc]),f(c[M.phys])]);}
+ return out;}
+function fixOpenings(arr){ // multi-day exports carry Opening only on the first day: later days open with the previous day's physical count
+ const idx=arr.map((r,i)=>i).sort((a,b)=>arr[a][0]<arr[b][0]?-1:arr[a][0]>arr[b][0]?1:0);const last={};let fixed=0;
+ for(const i of idx){const r=arr[i],k=nm(r[1])+'|'+ck(r[2]);const p=last[k];
+  if(r[3]===0&&p&&p.d<r[0]&&p.ph!==0){r[3]=p.ph;fixed++;}
+  if(!p||p.d<=r[0])last[k]={d:r[0],ph:r[9]};}
+ return fixed;}
+async function loadFromBuffer(buf,label){
+ const sh=await readSheets(buf,null);let nw=[],used='';
+ const order=Object.keys(sh).sort((a,b)=>(a==='Report Data'?-1:0)-(b==='Report Data'?-1:0));
+ for(const n of order){if(n==='Adjustments')continue;const r=parseRows(sh[n]);if(r.length>nw.length){nw=r;used=n;}if(n==='Report Data'&&r.length)break;}
+ if(!nw.length)throw new Error('Is file mein data nahi mila (columns: Date, Branch, Item Name, Opening, TrasferInn, TrasferOut, Sales, MadeVoid, Discard, Physical Count chahiye)');
+ const fx=fixOpenings(nw);rows=nw;
+ if(sh['Adjustments']){const na=[];sh['Adjustments'].forEach((c,i)=>{if(!c||i<3)return;const d=dOf(c[0]);if(!d||!c[2]||!c[3]||typeof c[4]!=='number')return;na.push([d,String(c[1]||'Bahadurabad').trim(),String(c[2]).trim(),String(c[3]).trim(),c[4]]);});adj=na;}
+ save();const ds=dates();if(!ds.includes(date))date=ds[0];render();
+ $('#link').textContent='Excel connected: '+label+' (sheet "'+used+'") · '+rows.length+' rows, '+ds.length+' dates · '+new Date().toLocaleTimeString()+' pe parha gaya. Excel mein save karne ke baad "Refresh" dabayein (ya ye khud 20 second mein check karta hai).';}
+let fh=null,lastMod=0;
+const idb=()=>new Promise((res,rej)=>{const r=indexedDB.open('bekd_conn',1);r.onupgradeneeded=()=>r.result.createObjectStore('h');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);});
+async function hset(h){try{const d=await idb();d.transaction('h','readwrite').objectStore('h').put(h,'fh');}catch(e){}}
+async function hget(){try{const d=await idb();return await new Promise(res=>{const r=d.transaction('h').objectStore('h').get('fh');r.onsuccess=()=>res(r.result||null);r.onerror=()=>res(null);});}catch(e){return null;}}
+async function readHandle(force){if(!fh)return;let p=await fh.queryPermission({mode:'read'});if(p!=='granted'){if(!force)return;p=await fh.requestPermission({mode:'read'});}if(p!=='granted')return;
+ const file=await fh.getFile();if(!force&&file.lastModified===lastMod)return;lastMod=file.lastModified;try{await loadFromBuffer(await file.arrayBuffer(),file.name);}catch(e){$('#link').textContent='Excel nahi parh saka: '+e.message;}}
+$('#conn').onclick=async()=>{
+ if(window.showOpenFilePicker){try{const [h]=await showOpenFilePicker({types:[{description:'Excel',accept:{'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':['.xlsx','.xlsm']}}]});fh=h;await hset(h);$('#refr').classList.remove('hide');lastMod=0;await readHandle(true);}catch(e){if(e.name!=='AbortError')$('#fi').click();}}
+ else $('#fi').click();};
+$('#fi').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{await loadFromBuffer(await f.arrayBuffer(),f.name);}catch(er){$('#link').textContent='Excel nahi parh saka: '+er.message;}e.target.value='';};
+$('#refr').onclick=()=>{lastMod=0;readHandle(true);};
+setInterval(()=>{if(!document.hidden)readHandle(false);},20000);
+(async()=>{fh=await hget();if(fh){$('#refr').classList.remove('hide');$('#link').textContent='Pehle connect ki hui Excel mili. "Refresh from Excel" dabayein (browser ek baar permission poochega).';}})();
+
+const setStk=()=>document.documentElement.style.setProperty('--stk',document.querySelector('.stick').offsetHeight+'px');
+setStk();addEventListener('resize',setStk);try{new ResizeObserver(setStk).observe(document.querySelector('.stick'));}catch(e){}
+render();setStk();
+</script></body></html>
