@@ -592,9 +592,9 @@ function bakeHTML(){let s='<!doctype html>'+__SRC;
  return s.replace(key,()=>inj+key);}
 $('#bake').onclick=()=>{try{const b=new Blob([bakeHTML()],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='AllBranches_Short_Excess_Report.html';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},800);}catch(e){alert('Could not save: '+e.message);}};
 
-const GHK='gh_pub_v2:AllBranches_Short_Excess_Report.html';const GHREPORT='allbranches';
+const GHK='gh_pub_v2:AllBranches_Short_Excess_Report (15).html';const GHREPORT='allbranches';
 const ghCfg=()=>{try{return JSON.parse(localStorage.getItem(GHK)||'null');}catch(e){return null;}};
-function ghDefaults(){let o='Wafflebar-Reports',r='Reports',p='AllBranches_Short_Excess_Report.html';try{if(/\.github\.io$/.test(location.hostname)){o=location.hostname.split('.')[0];r=location.pathname.split('/')[1]||r;p=decodeURIComponent(location.pathname.split('/').pop())||p;}}catch(e){}return {owner:o,repo:r,path:p,token:''};}
+function ghDefaults(){let o='Wafflebar-Reports',r='Reports',p='AllBranches_Short_Excess_Report (15).html';try{if(/\.github\.io$/.test(location.hostname)){o=location.hostname.split('.')[0];r=location.pathname.split('/')[1]||r;p=decodeURIComponent(location.pathname.split('/').pop())||p;}}catch(e){}return {owner:o,repo:r,path:p,token:''};}
 async function ghPublish(c,say){
  const api='https://api.github.com/repos/'+encodeURIComponent(c.owner)+'/'+encodeURIComponent(c.repo)+'/contents/'+c.path.split('/').map(encodeURIComponent).join('/');
  const H={Authorization:'Bearer '+c.token,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
