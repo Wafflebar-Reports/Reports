@@ -146,6 +146,9 @@ body.allv.one #allb .pgs:first-child .pgh{display:block}}
 .bxg{gap:0}.bxg .nm{flex:1;min-width:0}.bxg .n{flex:none;font-size:1.025em;width:3.9em;text-align:right;padding:0 .2em;border-left:1px solid #c5ced8;font-weight:700;white-space:nowrap;box-sizing:border-box;color:#12355b}
 .bxg .gt{flex:none;width:8.54em;font-size:1.2em;text-align:right;white-space:normal;line-height:1.1;border-left:1px solid #c5ced8;padding-left:.25em;box-sizing:border-box}.bxg .gt .tg{display:inline-block}
 .bxg .n.gl{width:6.246em;font-size:.64em;letter-spacing:-.01em;font-weight:700;white-space:normal;line-height:1.05;text-align:center;padding:0;color:#12355b;overflow:hidden}
+.sg{display:flex;align-items:flex-end;gap:6px;padding:9px .85em 7px;font-size:.9em;font-weight:700;color:#12355b;border-top:1px solid #c5ced8;background:#fff}.sg i{flex:1;border-bottom:1.2px solid #12355b;height:1.25em;min-width:30px}.sg i.d{flex:.6}.sg span{white-space:nowrap}
+body.nosign .sg{display:none}
+@media print{.sg{padding-top:3.2mm}}
 </style></head><body><div class="wrap">
 <div class="stick"><div class="hdr"><div class="logo">W</div><div><h1>The Waffle Bar &amp; Bek-d · All Branches Short / Excess</h1><div class="sub" id="sub"></div></div><div class="sp"></div>
  <div class="acts"><button class="btn pri" id="pdf">⇩ Save PDF</button><button class="btn" id="prn">🖨 Print</button><button class="btn" id="connW">🔗 Waffle Bar Excel</button><button class="btn" id="connB">🔗 Bek-d Excel</button><button class="btn" id="refr">↻ Refresh</button><button class="btn" id="bake" title="Download a new copy of this report with all current data saved inside it">💾 Save updated report</button><button class="btn pri" id="pub" title="Save this data into the live GitHub link">☁ Publish to GitHub</button><button class="btn" id="imp">Paste data</button><button class="btn" id="adjb">Adjustments</button></div></div>
@@ -331,6 +334,8 @@ function buildAbar(){const ab=$('#abar');if(ab.dataset.b)return;ab.dataset.b='1'
  ab.innerHTML='<span style="font-weight:700;font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em">Categories by branch:</span>'+TABS.map((k,i)=>`<span class="catwrap"><button class="sb" type="button" data-k="${k}"></button><div class="catpanel hide" data-k="${k}"><div class="ca"><button class="sb" type="button" data-a="all">Select all</button><button class="sb" type="button" data-a="none">Clear</button></div>${BASE.layout[k].map(g=>`<label><input type="checkbox" value="${esc(g.group)}" checked> ${esc(g.group)}</label>`).join('')}</div></span>`).join('');
  const lab=k=>{const n=BASE.layout[k].length,h=HID[k]?HID[k].size:0;ab.querySelector(`button[data-k="${k}"]`).innerHTML=esc(BN[TABS.indexOf(k)])+': '+(h===0?'All':(n-h)+' of '+n)+' &#9662;';};
  TABS.forEach(lab);
+ ab.insertAdjacentHTML('beforeend','<button class="sb" type="button" id="sgt" style="margin-left:auto">&#9998; Sign lines: On</button>');
+ $('#sgt').onclick=e=>{e.stopPropagation();const off=document.body.classList.toggle('nosign');e.target.innerHTML='&#9998; Sign lines: '+(off?'Off':'On')};
  ab.onclick=e=>{e.stopPropagation();const t=e.target,pn=t.closest('.catpanel'),bt=t.closest('button[data-k]');
   if(bt&&!pn){const p=ab.querySelector(`.catpanel[data-k="${bt.dataset.k}"]`),was=p.classList.contains('hide');ab.querySelectorAll('.catpanel').forEach(x=>x.classList.add('hide'));if(was)p.classList.remove('hide');return;}
   if(!pn)return;const k=pn.dataset.k,h=HID[k]||(HID[k]=new Set());
@@ -349,7 +354,7 @@ function renderAll(){
  const GL=['Opening','Trans In','Trans Out','Sale','Physical'];const gsum=()=>GL.map(t=>`<span class="n gl">${t}</span>`);
  const rows=(a,F)=>{let g=null,h='';for(const x of a){if(x.g!==g){g=x.g;const m=gsum(F||a,g);h+=`<div class="bxg"><span class="nm">${esc(g)}</span>${m.map(c=>c||'<span class="n"></span>').join('')}<span class="gt">${gtot(a,g)}</span></div>`;}h+=row(x);}return h;};
  const BXS=A.map(b=>{const L=b.L.filter(x=>SELA.has(x.st));return `<div class="bx"><div class="bxh"><b>${esc(b.name)}</b><span>${b.has?'Short '+b.S.length+' · Excess '+b.E.length+' · Match '+b.M.length:'No data'}</span></div>`+
-  (!b.has?'<div class="bxnd">No data for this date.</div>':(L.length?'':'')+(!b.S.length&&!b.E.length?'<div class="bxok">This branch\'s closing is perfect. There is no short or excess.</div>':'')+(L.length?rows(L,b.L):(!b.S.length&&!b.E.length)?'':'<div class="bxok">'+(SELA.size?'Nothing to show for the selected filter':'No filter selected')+'</div>'))+'</div>';});
+  (!b.has?'<div class="bxnd">No data for this date.</div>':(L.length?'':'')+(!b.S.length&&!b.E.length?'<div class="bxok">This branch\'s closing is perfect. There is no short or excess.</div>':'')+(L.length?rows(L,b.L):(!b.S.length&&!b.E.length)?'':'<div class="bxok">'+(SELA.size?'Nothing to show for the selected filter':'No filter selected')+'</div>'))+'<div class="sg"><span>Sign:</span><i></i><span>Name:</span><i></i><span>Date:</span><i class="d"></i></div></div>';});
  $('#allb').innerHTML=`<div class="pgs"><div class="pgh">The Waffle Bar &middot; Branches</div>${BXS.slice(0,5).join('')}</div><div class="pgs"><div class="pgh">Bek-d &middot; Branches</div>${BXS.slice(5).join('')}</div>`;
  $('#cats').classList.add('hide');$('#ndn').classList.add('hide');
  tabUI();fitAll();
